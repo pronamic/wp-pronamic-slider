@@ -1,0 +1,59 @@
+# Copyright (C) 2020 Pronamic
+# This file is distributed under the same license as the Pronamic Read More plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Pronamic Read More 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pronamic-read-"
+"more\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-10-15 14:37+0200\n"
+"PO-Revision-Date: 2020-10-15 14:37+0200\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Domain: pronamic-read-more\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#. Plugin Name of the plugin
+#: build/index.js:1 src/index.js:22
+msgid "Pronamic Read More"
+msgstr ""
+
+#. Description of the plugin
+msgid "Pronamic block with read more integration."
+msgstr ""
+
+#. Author of the plugin
+msgid "Pronamic"
+msgstr ""
+
+#: build/index.js:1 src/index.js:23
+msgid "Pronamic Read More block to hide or show content."
+msgstr ""
+
+#: build/index.js:1 src/edit.js:17 src/edit.js:36 src/save.js:14
+msgid "Read more"
+msgstr ""
+
+#: build/index.js:1 src/edit.js:24
+msgid "Settings"
+msgstr ""
+
+#: build/index.js:1 src/edit.js:27
+msgid "Hide content by default"
+msgstr ""
+
+#: build/index.js:1 src/edit.js:34
+msgid "Read more label"
+msgstr ""
+
+#: build/index.js:1 src/edit.js:42
+msgid "Read less label"
+msgstr ""
+
+#: build/index.js:1 src/edit.js:44 src/save.js:15
+msgid "Read less"
+msgstr ""

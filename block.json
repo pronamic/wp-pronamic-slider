@@ -1,0 +1,14 @@
+{
+	"name": "pronamic-slider/pronamic-slider",
+	"title": "Pronamic Slider",
+	"category": "common",
+	"icon": "smiley",
+	"description": "Pronamic block with slider integration.",
+	"textdomain": "pronamic-slider",
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

@@ -1,0 +1,23 @@
+/**
+ * Editor styles for frontend and backend
+ */
+.pronamic-block-read-more {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+
+	.pronamic-block-read-more__controls {
+		width: 100%;
+	}
+
+	.pronamic-block-read-more__content {
+		display: none;
+		width: 100%;
+	}
+
+	&.is-open {
+		.pronamic-block-read-more__content {
+			display: block;
+		}
+	}
+}
