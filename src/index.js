@@ -2,6 +2,7 @@
  * Packages
  */
 import { registerBlockType } from '@wordpress/blocks';
+import { InnerBlocks } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -16,7 +17,7 @@ import Edit from './edit';
 import save from './save';
 
 /**
- * Register block
+ * Register block slider
  */
 registerBlockType( 'pronamic/slider', {
 	title: __( 'Pronamic Slider', 'pronamic-slider' ),
@@ -24,24 +25,40 @@ registerBlockType( 'pronamic/slider', {
 	category: 'common',
 	icon: 'smiley',
 	attributes: {
-		'toggle': {
+		'arrows': {
 			type: 'boolean',
-			default: 'true',
+			default: true,
 		},
-		'more': {
-			type: 'string',
+		'dots': {
+			type: 'boolean',
+			default: true,
 		},
-		'less': {
+		'slidesToShow': {
 			type: 'string',
+			default: 1,
 		},
-		'btnClasses': {
+		'slidesToScroll': {
 			type: 'string',
-			default: 'pronamic-block-read-more__btn',
-		},
-		'contentId': {
-			type: 'string',
+			default: 1,
 		}
 	},
 	edit: Edit,
 	save,
+} );
+
+/**
+ * Register block slide
+ */
+registerBlockType( 'pronamic/slide', {
+	title: __( 'Pronamic Slide', 'pronamic-slider' ),
+	description: __( 'Pronamic Slide block.', 'pronamic-slider' ),
+	category: 'common',
+	icon: 'smiley',
+	parent: [ 'pronamic/slider' ],
+	edit() {
+		return <div class="pronamic-block-slide"><InnerBlocks /></div>;
+	},
+	save() {
+		return <div class="pronamic-block-slide"><InnerBlocks.Content /></div>;
+	},
 } );

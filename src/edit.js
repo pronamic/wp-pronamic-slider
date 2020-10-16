@@ -3,7 +3,7 @@
  */
 import { InnerBlocks, InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
-import { TextControl, ToggleControl, PanelBody, PanelRow } from '@wordpress/components';
+import { TextControl, ToggleControl, RangeControl, PanelBody, PanelRow } from '@wordpress/components';
 
 /**
  * Editor only styles
@@ -13,10 +13,22 @@ import './editor.scss';
 /**
  * Edit
  */
-export default function Edit( { clientId, attributes, className, setAttributes } ) {
-	const moreLabel = attributes.more ? attributes.more : __( 'Slider', 'pronamic-slider' );
+export default function Edit( { attributes, className, setAttributes } ) {
+	const allowedBlocks = [ 'pronamic/slide' ];
 
-	attributes.contentId = clientId;
+	const dots           = attributes.dots ? true : false;
+	const arrows         = attributes.arrows ? true : false;
+	const slidesToShow   = attributes.slidesToShow ? attributes.slidesToShow : 1;
+	const slidesToScroll = attributes.slidesToScroll ? attributes.slidesToScroll : 1;
+
+	var slickConfig = {
+		'slidesToShow': slidesToShow,
+		'slidesToScroll': slidesToScroll,
+		'dots': dots,
+		'arrows': arrows
+	};
+
+	slickConfig = JSON.stringify( slickConfig );
 
 	return (
 		<div>
@@ -24,42 +36,41 @@ export default function Edit( { clientId, attributes, className, setAttributes }
 				<PanelBody title={ __( 'Settings','pronamic-slider' ) } initialOpen={ true }>
 					<PanelRow>
 						<ToggleControl
-							label={ __( 'Hide content by default', 'pronamic-slider' ) }
-							checked={ attributes.toggle }
-							onChange={ ( toggle ) => setAttributes( { toggle } ) }
+							label={ __( 'Show arrows', 'pronamic-slider' ) }
+							checked={ attributes.arrows }
+							onChange={ ( arrows ) => setAttributes( { arrows } ) }
 						/>
 					</PanelRow>
 					<PanelRow>
-						<TextControl
-							label={ __( 'Read more label', 'pronamic-slider' ) }
-							value={ attributes.more }
-							placeholder={ __( 'Read more', 'pronamic-slider' ) }
-							onChange={ ( more ) => setAttributes( { more } ) }
+						<ToggleControl
+							label={ __( 'Show dots', 'pronamic-slider' ) }
+							checked={ attributes.dots }
+							onChange={ ( dots ) => setAttributes( { dots } ) }
 						/>
 					</PanelRow>
 					<PanelRow>
-						<TextControl
-							label={ __( 'Read less label', 'pronamic-slider' ) }
-							value={attributes.less}
-							placeholder={ __( 'Read less', 'pronamic-slider' ) }
-							onChange={ ( less ) => setAttributes( { less } ) }
+						<RangeControl
+							label={ __( 'Slides to show', 'pronamic-slider' ) }
+							value={ attributes.slidesToShow }
+							onChange={ ( slidesToShow ) => setAttributes( { slidesToShow } ) }
+							min={ 1 }
+        					max={ 10 }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<RangeControl
+							label={ __( 'Slides to scroll', 'pronamic-slider' ) }
+							value={ attributes.slidesToScroll }
+							onChange={ ( slidesToScroll ) => setAttributes( { slidesToScroll } ) }
+							min={ 1 }
+        					max={ 10 }
 						/>
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ className }>
-				<div class="pronamic-block-read-more">
-					<p class="pronamic-block-read-more__controls">
-						<a href={ '#' + clientId } className={ attributes.btnClasses }>
-							{ moreLabel }
-						</a>
-					</p>
-
-					<div class="pronamic-block-read-more__content" id={ clientId }>
-						<InnerBlocks />
-					</div>
-				</div>
+			<div class="pronamic-block-slider" data-slick={ slickConfig }>
+				<InnerBlocks allowedBlocks={ allowedBlocks } />
 			</div>
 		</div>
 	);
