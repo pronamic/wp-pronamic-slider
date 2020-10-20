@@ -16,16 +16,20 @@ import './editor.scss';
 export default function Edit( { attributes, className, setAttributes } ) {
 	const allowedBlocks = [ 'pronamic/slide' ];
 
-	const dots           = attributes.dots ? true : false;
 	const arrows         = attributes.arrows ? true : false;
-	const slidesToShow   = attributes.slidesToShow ? attributes.slidesToShow : 1;
+	const autoplay       = attributes.autoplay ? true : false;
+	const dots           = attributes.dots ? true : false;
+	const fade           = attributes.fade ? true : false;
 	const slidesToScroll = attributes.slidesToScroll ? attributes.slidesToScroll : 1;
+	const slidesToShow   = attributes.slidesToShow ? attributes.slidesToShow : 1;
 
 	var slickConfig = {
-		'slidesToShow': slidesToShow,
-		'slidesToScroll': slidesToScroll,
+		'arrows': arrows,
+		'autoplay': autoplay,
 		'dots': dots,
-		'arrows': arrows
+		'fade': fade,
+		'slidesToScroll': slidesToScroll,
+		'slidesToShow': slidesToShow,
 	};
 
 	slickConfig = JSON.stringify( slickConfig );
@@ -66,11 +70,27 @@ export default function Edit( { attributes, className, setAttributes } ) {
         					max={ 10 }
 						/>
 					</PanelRow>
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Autoplay', 'pronamic-slider' ) }
+							checked={ attributes.autoplay }
+							onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
+						/>
+					</PanelRow>
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Fade', 'pronamic-slider' ) }
+							checked={ attributes.fade }
+							onChange={ ( fade ) => setAttributes( { fade } ) }
+						/>
+					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 
-			<div class="pronamic-block-slider" data-slick={ slickConfig }>
-				<InnerBlocks allowedBlocks={ allowedBlocks } />
+			<div>
+				<div class="pronamic-block-slider" data-slick={ slickConfig }>
+					<InnerBlocks allowedBlocks={ allowedBlocks } />
+				</div>
 			</div>
 		</div>
 	);

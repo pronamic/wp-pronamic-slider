@@ -8,24 +8,30 @@ import { InnerBlocks } from '@wordpress/block-editor';
  * Save
  */
 export default function save( { attributes, className } ) {
-	const dots           = attributes.dots ? true : false;
 	const arrows         = attributes.arrows ? true : false;
-	const slidesToShow   = attributes.slidesToShow ? attributes.slidesToShow : 1;
+	const autoplay       = attributes.autoplay ? true : false;
+	const dots           = attributes.dots ? true : false;
+	const fade           = attributes.fade ? true : false;
 	const slidesToScroll = attributes.slidesToScroll ? attributes.slidesToScroll : 1;
+	const slidesToShow   = attributes.slidesToShow ? attributes.slidesToShow : 1;
 
 	var slickConfig = {
-		'slidesToShow': slidesToShow,
-		'slidesToScroll': slidesToScroll,
+		'arrows': arrows,
+		'autoplay': autoplay,
 		'dots': dots,
-		'arrows': arrows
+		'fade': fade,
+		'slidesToScroll': slidesToScroll,
+		'slidesToShow': slidesToShow,
 	};
 
 	slickConfig = JSON.stringify( slickConfig );
 
 	return (
 		<div>
-			<div class="pronamic-block-slider" data-slick={ slickConfig }>
-				<InnerBlocks.Content />
+			<div>
+				<div class="pronamic-block-slider" data-slick={ slickConfig }>
+					<InnerBlocks.Content />
+				</div>
 			</div>
 		</div>
 	);

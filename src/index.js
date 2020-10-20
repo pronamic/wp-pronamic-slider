@@ -25,6 +25,10 @@ registerBlockType( 'pronamic/slider', {
 	category: 'common',
 	icon: 'smiley',
 	attributes: {
+		'autoplay': {
+			type: 'boolean',
+			default: false,
+		},
 		'arrows': {
 			type: 'boolean',
 			default: true,
@@ -33,11 +37,15 @@ registerBlockType( 'pronamic/slider', {
 			type: 'boolean',
 			default: true,
 		},
-		'slidesToShow': {
+		'fade': {
+			type: 'boolean',
+			default: false,
+		},
+		'slidesToScroll': {
 			type: 'string',
 			default: 1,
 		},
-		'slidesToScroll': {
+		'slidesToShow': {
 			type: 'string',
 			default: 1,
 		}
