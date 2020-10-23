@@ -22,8 +22,7 @@
 // Navigation
 .slick-prev,
 .slick-next {
-	background: red;
-	border: #ddd;
+	background: #000;
 	border-radius: 100%;
 	color: transparent;
 	cursor: pointer;
@@ -41,8 +40,9 @@
 	z-index: 1;
 
 	&::before {
-		opacity: .25;
-		transition: .2s linear;
+		color: #fff;
+		display: block;
+		text-align: center;
 	}
 
 	&:hover,
@@ -63,10 +63,18 @@
 
 .slick-prev {
 	left: 20px;
+
+	&::before {
+		content: '‹';
+	}
 }
 
 .slick-next {
 	right: 20px;
+
+	&::before {
+		content: '›';
+	}
 }
 
 // Dots
@@ -105,7 +113,7 @@
 			height: 12px;
 
 			&::before {
-				background: red;
+				background: #000;
 				border-radius: 100%;
 				content: '';
 				opacity: .25;
