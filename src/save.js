@@ -9,8 +9,10 @@ import { InnerBlocks } from '@wordpress/block-editor';
  */
 export default function save( { attributes, className } ) {
 	const arrows         = attributes.arrows ? true : false;
+	const arrowsPosition = attributes.arrowsPosition;
 	const autoplay       = attributes.autoplay ? true : false;
 	const dots           = attributes.dots ? true : false;
+	const dotsPosition   = attributes.dotsPosition;
 	const fade           = attributes.fade ? true : false;
 	const slidesToScroll = attributes.slidesToScroll ? attributes.slidesToScroll : 1;
 	const slidesToShow   = attributes.slidesToShow ? attributes.slidesToShow : 1;
@@ -28,10 +30,8 @@ export default function save( { attributes, className } ) {
 
 	return (
 		<div>
-			<div>
-				<div class="pronamic-block-slider" data-slick={ slickConfig }>
-					<InnerBlocks.Content />
-				</div>
+			<div class="pronamic-block-slider" data-slick={ slickConfig }>
+				<InnerBlocks.Content />
 			</div>
 		</div>
 	);

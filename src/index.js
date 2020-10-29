@@ -33,9 +33,15 @@ registerBlockType( 'pronamic/slider', {
 			type: 'boolean',
 			default: true,
 		},
+		'arrowsPosition': {
+			type: 'string',
+		},
 		'dots': {
 			type: 'boolean',
 			default: true,
+		},
+		'dotsPosition': {
+			type: 'string',
 		},
 		'fade': {
 			type: 'boolean',
