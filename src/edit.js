@@ -16,14 +16,16 @@ import './editor.scss';
 export default function Edit( { attributes, className, setAttributes } ) {
 	const allowedBlocks = [ 'pronamic/slide' ];
 
-	const arrows         = attributes.arrows ? true : false;
-	const arrowsPosition = attributes.arrowsPosition;
-	const autoplay       = attributes.autoplay ? true : false;
-	const dots           = attributes.dots ? true : false;
-	const dotsPosition   = attributes.dotsPosition;
-	const fade           = attributes.fade ? true : false;
-	const slidesToScroll = attributes.slidesToScroll ? attributes.slidesToScroll : 1;
-	const slidesToShow   = attributes.slidesToShow ? attributes.slidesToShow : 1;
+	const arrows           = attributes.arrows ? true : false;
+	const autoplay         = attributes.autoplay ? true : false;
+	const dots             = attributes.dots ? true : false;
+	const fade             = attributes.fade ? true : false;
+	const slidesToScroll   = attributes.slidesToScroll ? attributes.slidesToScroll : 1;
+	const slidesToShow     = attributes.slidesToShow ? attributes.slidesToShow : 1;
+	const controlsPosition = attributes.controlsPosition;
+
+	const controlsPositionClass = 'pronamic-block-slider--' + controlsPosition;
+	const blockClasses          = `pronamic-block-slider ${ controlsPositionClass }`;
 
 	var slickConfig = {
 		'arrows': arrows,
@@ -32,6 +34,14 @@ export default function Edit( { attributes, className, setAttributes } ) {
 		'fade': fade,
 		'slidesToScroll': slidesToScroll,
 		'slidesToShow': slidesToShow,
+		'responsive': [
+			{
+				breakpoint: 767,
+				settings: {
+					slidesToShow: 1,
+				}
+			}
+		]
 	};
 
 	slickConfig = JSON.stringify( slickConfig );
@@ -88,33 +98,20 @@ export default function Edit( { attributes, className, setAttributes } ) {
 					</PanelRow>
 					<PanelRow>
 						<SelectControl
-							label={ __( 'Arrows position', 'pronamic-slider' ) }
-							value={ arrowsPosition }
+							label={ __( 'Controls position', 'pronamic-slider' ) }
+							value={ controlsPosition }
 							options={ [
 								{ label: __( 'Outside', 'pronamic-slider' ), value: 'outside' },
 								{ label: __( 'Inside', 'pronamic-slider' ), value: 'inside' },
 							] }
-							onChange={ ( arrowsPosition ) => setAttributes( { arrowsPosition } ) }
-						/>
-					</PanelRow>
-					<PanelRow>
-						<SelectControl
-							label={ __( 'Dots position', 'pronamic-slider' ) }
-							value={ dotsPosition }
-							options={ [
-								{ label: __( 'Outside', 'pronamic-slider' ), value: 'outside' },
-								{ label: __( 'Inside', 'pronamic-slider' ), value: 'inside' },
-							] }
-							onChange={ ( dotsPosition ) => setAttributes( { dotsPosition } ) }
+							onChange={ ( controlsPosition ) => setAttributes( { controlsPosition } ) }
 						/>
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 
-			<div>
-				<div class="pronamic-block-slider" data-slick={ slickConfig }>
-					<InnerBlocks allowedBlocks={ allowedBlocks } />
-				</div>
+			<div className={ blockClasses } data-slick={ slickConfig }>
+				<InnerBlocks allowedBlocks={ allowedBlocks } />
 			</div>
 		</div>
 	);

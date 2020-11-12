@@ -15,19 +15,14 @@
  * Register block assets
  */
 function pronamic_slider_init() {
-	$dir = dirname( __FILE__ );
-
+	$dir               = dirname( __FILE__ );
 	$script_asset_path = $dir . '/build/index.asset.php';
+	$index_js          = 'build/index.js';
+	$script_asset      = require( $script_asset_path );
+	$editor_css        = 'build/index.css';
+	$style_css         = 'build/style-index.css';
 
-	if ( ! file_exists( $script_asset_path ) ) {
-		throw new Error(
-			'You need to run `npm start` or `npm run build` for the "pronamic-slider/pronamic-slider" block first.'
-		);
-	}
-
-	$index_js     = 'build/index.js';
-	$script_asset = require( $script_asset_path );
-
+	// Register block editor script for backend.
 	wp_register_script(
 		'pronamic-slider-block-editor',
 		plugins_url( $index_js, __FILE__ ),
@@ -35,14 +30,7 @@ function pronamic_slider_init() {
 		$script_asset['version']
 	);
 
-	wp_set_script_translations(
-		'pronamic-slider-block-editor',
-		'pronamic-slider',
-		plugin_dir_path( __FILE__ ) . 'languages'
-	);
-
-	$editor_css = 'build/index.css';
-
+	// Register block editor style for backend.
 	wp_register_style(
 		'pronamic-slider-block-editor',
 		plugins_url( $editor_css, __FILE__ ),
@@ -50,8 +38,14 @@ function pronamic_slider_init() {
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'build/style-index.css';
+	// Translations
+	wp_set_script_translations(
+		'pronamic-slider-block-editor',
+		'pronamic-slider',
+		plugin_dir_path( __FILE__ ) . 'languages'
+	);
 
+	// Register frontend style.
 	wp_register_style(
 		'pronamic-slider-block',
 		plugins_url( $style_css, __FILE__ ),
@@ -59,62 +53,46 @@ function pronamic_slider_init() {
 		filemtime( "$dir/$style_css" )
 	);
 
+	// Register slick scripts and styles.
+	wp_register_script(
+		'slick',
+		plugins_url( 'node_modules/slick-carousel/slick/slick.js', __FILE__ ),
+		array(
+			'jquery',
+		),
+		'1.8.1',
+		true
+	);
+
+	wp_register_style(
+		'slick',
+		plugins_url( 'node_modules/slick-carousel/slick/slick.css', __FILE__ ),
+		array(),
+		'1.8.1'
+	);
+
+	wp_register_script(
+		'pronamic-slider-blocks-frontend',
+		plugins_url( 'js/script.min.js', __FILE__ ),
+		array(
+			'jquery',
+			'slick',
+		)
+	);
+
+	// Register block type
+	$scripts = array( 'slick', 'pronamic-slider-blocks-frontend' );
+	$styles  = array( 'slick', 'pronamic-slider-block' );
+
 	register_block_type(
 		'pronamic/slider',
 		array(
 			'editor_script' => 'pronamic-slider-block-editor',
+			'script'        => $scripts,
 			'editor_style'  => 'pronamic-slider-block-editor',
-			'style'         => 'pronamic-slider-block',
-		)
-	);
-
-	register_block_type(
-		'pronamic/slide',
-		array(
-			'editor_script' => 'pronamic-slider-block-editor',
-			'editor_style'  => 'pronamic-slider-block-editor',
-			'style'         => 'pronamic-slider-block',
+			'style'         => $styles,
 		)
 	);
 }
 
 add_action( 'init', 'pronamic_slider_init' );
-
-/**
- * Frontend scripts
- */
-function pronamic_slider_frontend_scripts() {
-	if ( has_block( 'pronamic/slider' ) ) {
-
-		wp_register_script(
-			'slick',
-			plugins_url( 'node_modules/slick-carousel/slick/slick.js', __FILE__ ),
-			array(
-				'jquery',
-			),
-			'1.8.1',
-			true
-		);
-
-		wp_register_style(
-			'slick',
-			plugins_url( 'node_modules/slick-carousel/slick/slick.css', __FILE__ ),
-			array(),
-			'1.8.1'
-		);
-
-		wp_register_script(
-			'pronamic-slider-blocks-frontend',
-			plugins_url( 'js/script.min.js', __FILE__ ),
-			array(
-				'jquery',
-				'slick',
-			)
-		);
-
-		wp_enqueue_script( 'pronamic-slider-blocks-frontend' );
-		wp_enqueue_style( 'slick' );
-	}
-}
-
-add_action( 'wp_enqueue_scripts', 'pronamic_slider_frontend_scripts' );

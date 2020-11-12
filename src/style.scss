@@ -3,12 +3,37 @@
  */
 .pronamic-block-slider {
 	display: block;
+	margin-right: -15px;
+	margin-left: -15px;
+
+	.pronamic-block-slider_slide {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+
+	&.pronamic-block-slider--inside {
+		.slick-prev {
+			left: 35px;
+		}
+
+		.slick-next {
+			right: 35px;
+		}
+
+		&.slick-dotted {
+			padding-bottom: 0;
+
+			.slick-dots {
+				bottom: 20px;
+			}
+		}
+	}
 }
 
 // Slider
 .slick-slider {
 	&.slick-dotted {
-		padding-bottom: 12px;
+		padding-bottom: 27px;
 	}
 }
 
@@ -62,7 +87,7 @@
 }
 
 .slick-prev {
-	left: 20px;
+	left: -45px;
 
 	&::before {
 		content: '‹';
@@ -70,7 +95,7 @@
 }
 
 .slick-next {
-	right: 20px;
+	right: -45px;
 
 	&::before {
 		content: '›';

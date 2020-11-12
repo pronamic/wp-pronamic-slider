@@ -1,11 +1,11 @@
 ( function( $ ) {
-	$( document ).ready( function() {
 
-		/**
-		 * Sliders
-		 *
-		 * @plugin Slick
-		 */
+	/**
+	 * Sliders
+	 *
+	 * @plugin Slick
+	 */
+	const createSlider = function() {
 		$( '.pronamic-block-slider' ).slick( {
 			dots: true,
 			arrows: true,
@@ -21,5 +21,9 @@
 				}
 			]
 		} );
+	}
+
+	$( document ).ready( function() {
+		createSlider();
 	} );
 } )( jQuery );

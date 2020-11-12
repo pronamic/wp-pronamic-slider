@@ -33,26 +33,24 @@ registerBlockType( 'pronamic/slider', {
 			type: 'boolean',
 			default: true,
 		},
-		'arrowsPosition': {
+		'controlsPosition': {
 			type: 'string',
+			default: 'outside',
 		},
 		'dots': {
 			type: 'boolean',
 			default: true,
-		},
-		'dotsPosition': {
-			type: 'string',
 		},
 		'fade': {
 			type: 'boolean',
 			default: false,
 		},
 		'slidesToScroll': {
-			type: 'string',
+			type: 'integer',
 			default: 1,
 		},
 		'slidesToShow': {
-			type: 'string',
+			type: 'integer',
 			default: 1,
 		}
 	},
@@ -70,9 +68,9 @@ registerBlockType( 'pronamic/slide', {
 	icon: 'smiley',
 	parent: [ 'pronamic/slider' ],
 	edit() {
-		return <div class="pronamic-block-slide"><InnerBlocks /></div>;
+		return <div className={ 'pronamic-block-slider_slide' }><InnerBlocks /></div>;
 	},
 	save() {
-		return <div class="pronamic-block-slide"><InnerBlocks.Content /></div>;
+		return <div className={ 'pronamic-block-slider_slide' }><InnerBlocks.Content /></div>;
 	},
 } );
