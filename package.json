@@ -12,12 +12,14 @@
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
 		"packages-update": "wp-scripts packages-update",
-		"js-build": "terser src/script.js -o js/script.min.js"
+		"js-build": "terser src/script.js -o js/script.min.js",
+		"copy": "copyfiles -f node_modules/slick-carousel/slick/slick.css node_modules/slick-carousel/slick/slick.js vendor/slick"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^12.2.0"
 	},
 	"dependencies": {
+		"copyfiles": "^2.4.0",
 		"slick-carousel": "^1.8.1",
 		"terser": "^5.3.1"
 	}

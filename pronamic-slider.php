@@ -56,7 +56,7 @@ function pronamic_slider_init() {
 	// Register slick scripts and styles.
 	wp_register_script(
 		'slick',
-		plugins_url( 'node_modules/slick-carousel/slick/slick.js', __FILE__ ),
+		plugins_url( 'vendor/slick/slick.js', __FILE__ ),
 		array(
 			'jquery',
 		),
@@ -66,7 +66,7 @@ function pronamic_slider_init() {
 
 	wp_register_style(
 		'slick',
-		plugins_url( 'node_modules/slick-carousel/slick/slick.css', __FILE__ ),
+		plugins_url( 'vendor/slick/slick.css', __FILE__ ),
 		array(),
 		'1.8.1'
 	);

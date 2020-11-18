@@ -23,7 +23,7 @@ registerBlockType( 'pronamic/slider', {
 	title: __( 'Pronamic Slider', 'pronamic-slider' ),
 	description: __( 'Pronamic Slider block.', 'pronamic-slider' ),
 	category: 'common',
-	icon: 'smiley',
+	icon: 'laptop',
 	attributes: {
 		'autoplay': {
 			type: 'boolean',
