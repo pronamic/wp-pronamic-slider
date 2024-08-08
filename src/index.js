@@ -57,20 +57,3 @@ registerBlockType( 'pronamic/slider', {
 	edit: Edit,
 	save,
 } );
-
-/**
- * Register block slide
- */
-registerBlockType( 'pronamic/slide', {
-	title: __( 'Pronamic Slide', 'pronamic-slider' ),
-	description: __( 'Pronamic Slide block.', 'pronamic-slider' ),
-	category: 'common',
-	icon: 'smiley',
-	parent: [ 'pronamic/slider' ],
-	edit() {
-		return <div className={ 'pronamic-block-slider_slide' }><InnerBlocks /></div>;
-	},
-	save() {
-		return <div className={ 'pronamic-block-slider_slide' }><InnerBlocks.Content /></div>;
-	},
-} );

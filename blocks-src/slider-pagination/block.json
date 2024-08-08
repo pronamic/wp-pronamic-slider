@@ -1,0 +1,11 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "pronamic/slider-pagination",
+	"version": "1.0.0",
+	"title": "Pronamic Slider Pagination",
+	"category": "pronamic",
+	"icon": "smiley",
+	"textdomain": "pronamic-slider",
+	"editorScript": "file:./index.js"
+}

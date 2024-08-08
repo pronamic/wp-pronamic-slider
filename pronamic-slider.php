@@ -96,3 +96,46 @@ function pronamic_slider_init() {
 }
 
 add_action( 'init', 'pronamic_slider_init' );
+
+/**
+ * Swiper
+ */
+function register_blocks() {
+	//\register_block_type( __DIR__ . '/blocks/slider' );
+	\register_block_type( __DIR__ . '/blocks/slide' );
+	\register_block_type( __DIR__ . '/blocks/slider-navigation' );
+	\register_block_type( __DIR__ . '/blocks/slider-pagination' );
+	\register_block_type( __DIR__ . '/blocks/slider-scrollbar' );
+}
+
+add_action( 'init', 'register_blocks' );
+
+/**
+ * Render Slider Query Loop block
+ */
+add_filter(
+	'render_block',
+	function( $block_content, $block ) {
+		if ( empty( $block['attrs']['namespace'] ) ) {
+			return $block_content;
+		}
+
+		if ( 'pronamic/slider' !== $block['attrs']['namespace'] ) {
+			return $block_content;
+		}
+
+		$processor = new \WP_HTML_Tag_Processor( $block_content );
+
+		if ( $processor->next_tag( 'ul' ) ) {
+			$processor->add_class( 'swiper-wrapper' );
+		}
+
+		while ( $processor->next_tag( 'li' ) ) {
+			$processor->add_class( 'swiper-slide' );
+		}
+
+		return $processor->get_updated_html();
+	},
+	20,
+	2
+);

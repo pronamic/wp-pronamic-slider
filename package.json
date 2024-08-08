@@ -7,6 +7,7 @@
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
+		"build-blocks": "wp-scripts build --webpack-src-dir=blocks-src --output-path=blocks",
 		"format:js": "wp-scripts format-js",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
@@ -16,11 +17,11 @@
 		"copy": "copyfiles -f node_modules/slick-carousel/slick/slick.css node_modules/slick-carousel/slick/slick.js vendor/slick"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^12.2.0"
+		"@wordpress/scripts": "^28.5.0"
 	},
 	"dependencies": {
-		"copyfiles": "^2.4.0",
+		"copyfiles": "^2.4.1",
 		"slick-carousel": "^1.8.1",
-		"terser": "^5.3.1"
+		"terser": "^5.31.4"
 	}
 }
