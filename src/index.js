@@ -1,59 +1,143 @@
-/**
- * Packages
- */
-import { registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
+
+import { InspectorControls } from '@wordpress/block-editor';
 
 /**
- * Editor only styles
+ * WordPress Dependencies
  */
+const { addFilter } = wp.hooks;
+const { __ } = wp.i18n;
+const { createHigherOrderComponent } = wp.compose;
+const { Fragment } = wp.element;
+const { PanelBody, TextControl } = wp.components;
+const { registerBlockVariation } = wp.blocks;
+
 import './style.scss';
 
 /**
- * Internal dependencies
+ * @link https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/extending-the-query-loop-block/
+ * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-variations/
+ * @link https://developer.wordpress.org/news/2022/12/20/building-a-book-review-grid-with-a-query-loop-block-variation/
  */
-import Edit from './edit';
-import save from './save';
+registerBlockVariation(
+	'core/query', {
+		name: 'pronamic/slider',
+		title: 'Slider',
+		description: 'Displays a slider.',
+		isActive: [ 'namespace' ],
+		icon: 'admin-site',
+		allowedControls: [ 'postType' ],
+		attributes: {
+			namespace: 'pronamic/slider',
+			sliderSettings: null,
+			query: {
+				postType: 'camping',
+			}
+		},
+		innerBlocks: [
+			[
+				'core/post-template',
+				{},
+				[
+					[ 'core/post-title' ],
+					[ 'core/post-excerpt' ]
+				],
+				[ 'core/query-no-results' ],
+			],
+		],
+		scope: [ 'inserter' ]
+	}
+);
 
 /**
- * Register block slider
+ * Slider controls
  */
-registerBlockType( 'pronamic/slider', {
-	title: __( 'Pronamic Slider', 'pronamic-slider' ),
-	description: __( 'Pronamic Slider block.', 'pronamic-slider' ),
-	category: 'common',
-	icon: 'laptop',
-	attributes: {
-		'autoplay': {
-			type: 'boolean',
-			default: false,
-		},
-		'arrows': {
-			type: 'boolean',
-			default: true,
-		},
-		'controlsPosition': {
-			type: 'string',
-			default: 'outside',
-		},
-		'dots': {
-			type: 'boolean',
-			default: true,
-		},
-		'fade': {
-			type: 'boolean',
-			default: false,
-		},
-		'slidesToScroll': {
-			type: 'integer',
-			default: 1,
-		},
-		'slidesToShow': {
-			type: 'integer',
-			default: 1,
-		}
-	},
-	edit: Edit,
-	save,
-} );
+export const sliderControls = createHigherOrderComponent(
+	( BlockEdit ) => {
+		return ( props ) => {
+			const {
+				attributes,
+				setAttributes,
+			} = props;
+
+			const {
+				namespace
+			} = attributes;
+
+			return (
+				<Fragment>
+					<BlockEdit { ...props } />
+					<InspectorControls>
+						<PanelBody title={ __( 'Settings' ) } initialOpen={ true }>
+							<TextControl
+								label={ __( 'Namespace' ) }
+								value={ namespace }
+								onChange={ ( namespaceValue ) => {
+									props.setAttributes(
+										{
+											namespace: namespaceValue,
+										}
+									);
+								} }
+							/>
+						</PanelBody>
+					</InspectorControls>
+				</Fragment>
+			);
+		};
+	}
+);
+
+addFilter(
+	'editor.BlockEdit',
+	'pronamic/slider',
+	sliderControls
+);
+
+/**
+ * Modify the block’s wrapper component containing the block’s edit component.
+ */
+export const addSliderWrapperAttributes = createHigherOrderComponent(
+	( BlockListBlock ) => {
+		return ( props ) => {
+			const wrapperProps = {
+				...props.wrapperProps,
+				'data-swiper-settings': 'slider-settings',
+				//'className': 'slider-class'
+			};
+			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
+		};
+	}
+);
+
+addFilter(
+	'editor.BlockListBlock',
+	'pronamic/slider',
+	addSliderWrapperAttributes
+);
+
+/**
+ * Add extra props to the root element of the save function.
+ * 
+ * @param object props
+ * @param object blockType
+ * @param object attributes
+ */
+function addSliderAttributes( props, blockType, attributes ) {
+	if ( 'core/query' !== blockType.name ) {
+		return {
+			...props
+		};
+	}
+
+	return {
+		...props,
+		//'className': 'slider-class',
+	   'data-swiper-settings': 'slider-settings'
+	};
+}
+
+addFilter(
+	'blocks.getSaveContent.extraProps',
+	'pronamic/slider',
+	addSliderAttributes
+);

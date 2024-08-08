@@ -9,33 +9,39 @@
   "attributes": {
     "autoplay": {
       "type": "boolean",
-      "value": false
+      "default": false
     },
     "arrows": {
       "type": "boolean",
-      "value": true
+      "default": true
     },
     "controlsPosition": {
       "type": "string",
-      "value": "outside"
+      "default": "outside"
     },
     "dots": {
       "type": "boolean",
-      "value": true
+      "default": true
     },
     "fade": {
       "type": "boolean",
-      "value": false
+      "default": false
     },
     "slidesToScroll": {
       "type": "integer",
-      "value": 1
+      "default": 1
     },
     "slidesToShow": {
       "type": "integer",
-      "value": 1
+      "default": 1
     }
   },
   "textdomain": "pronamic-slider",
-  "editorScript": "file:./index.js"
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "viewScript": "pronamic-slider-blocks-frontend",
+  "viewStyle": [
+    "slick",
+    "slick-theme"
+  ]
 }
