@@ -39,9 +39,12 @@
   "textdomain": "pronamic-slider",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "viewScript": "pronamic-slider-blocks-frontend",
+  "viewScript": [
+    "slick",
+    "file:./view.js"
+  ],
   "viewStyle": [
     "slick",
-    "slick-theme"
+    "file:./style-index.css"
   ]
 }

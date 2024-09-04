@@ -1,0 +1,1 @@
+(()=>{var o;(o=jQuery)(document).ready((function(){o(".pronamic-block-slider").slick({dots:!0,arrows:!0,infinite:!0,slidesToShow:1,slidesToScroll:1,responsive:[{breakpoint:767,settings:{slidesToShow:1}}]})}))})();

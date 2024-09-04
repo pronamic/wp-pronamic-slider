@@ -12,51 +12,55 @@
  */
 
 /**
- * Register block assets
+ * Register slick assets
  */
 function pronamic_slider_init() {
-	// Register slick scripts and styles.
-	wp_register_script(
+	\wp_register_script(
 		'slick',
-		plugins_url( 'vendor/slick/slick.js', __FILE__ ),
-		array(
+		\plugins_url( 'vendor/slick/slick.js', __FILE__ ),
+		[
 			'jquery',
-		),
+		],
 		'1.8.1',
 		true
 	);
 
-	wp_register_script(
-		'pronamic-slider-blocks-frontend',
-		plugins_url( 'js/script.min.js', __FILE__ ),
-		array(
-			'jquery',
-			'slick',
-		)
-	);
-
-	wp_register_style(
+	\wp_register_style(
 		'slick',
-		plugins_url( 'vendor/slick/slick.css', __FILE__ ),
-		array(),
+		\plugins_url( 'vendor/slick/slick.css', __FILE__ ),
+		[],
 		'1.8.1'
 	);
 
-	wp_register_style(
+	\wp_register_style(
 		'slick-theme',
-		plugins_url( 'vendor/slick/slick-theme.css', __FILE__ ),
-		array(),
+		\plugins_url( 'vendor/slick/slick-theme.css', __FILE__ ),
+		[],
 		'1.8.1'
 	);
 }
 
-add_action( 'init', 'pronamic_slider_init' );
+\add_action( 'init', 'pronamic_slider_init' );
 
 // Enqueue frontend scripts and styles
 \add_action(
 	'wp_enqueue_scripts',
 	function() {
 		$script_asset = require __DIR__ . '/build/index.asset.php';
+
+		wp_enqueue_style(
+			'pronamic-query-loop-slider',
+			plugins_url( 'build/view.css', __FILE__ ),
+			[],
+			$script_asset['version']
+		);
+	
+		\wp_enqueue_script(
+			'pronamic-query-loop-slider',
+			plugins_url( 'build/view.js', __FILE__ ),
+			$script_asset['dependencies'],
+			$script_asset['version']
+		);
 	}
 );
 
@@ -72,20 +76,13 @@ add_action( 'init', 'pronamic_slider_init' );
 			$script_asset['dependencies'],
 			$script_asset['version']
 		);
-
-		wp_enqueue_style(
-			'pronamic-animate-frontend-styles',
-			plugins_url( 'build/style-index.css', __FILE__ ),
-			[],
-			$script_asset['version']
-		);
 	}
 );
 
 /**
  * Register blocks
  */
-add_action(
+\add_action(
 	'init',
 	function() {
 		\register_block_type( __DIR__ . '/blocks/slider' );
@@ -99,7 +96,7 @@ add_action(
 /**
  * Render Slider Query Loop block
  */
-add_filter(
+\add_filter(
 	'render_block',
 	function( $block_content, $block ) {
 		if ( empty( $block['attrs']['namespace'] ) ) {
@@ -110,7 +107,15 @@ add_filter(
 			return $block_content;
 		}
 
+		$slider_settings = [
+			'number' => $block['attrs']['slidesToShow']
+		];
+
 		$processor = new \WP_HTML_Tag_Processor( $block_content );
+
+		if ( $processor->next_tag( 'div' ) ) {
+			$processor->set_attribute( 'data-swiper-settings', wp_json_encode( $slider_settings ) );
+		}
 
 		if ( $processor->next_tag( 'ul' ) ) {
 			$processor->add_class( 'swiper-wrapper' );

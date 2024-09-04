@@ -14,14 +14,14 @@ registerBlockType(
 		edit: ( { attributes, setAttributes } ) => {
 			return (
 				<div { ...useBlockProps() }>
-					SCROLLBAR
+					<div class="swiper-scrollbar"></div>
 				</div>
 			);
 		},
 		save: ( { attributes } ) => {
 			return (
 				<div { ...useBlockProps.save() }>
-					SCROLLBAR
+					<div class="swiper-scrollbar"></div>
 				</div>
 			);
 		},

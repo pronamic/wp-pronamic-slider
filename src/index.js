@@ -1,17 +1,14 @@
 
-import { InspectorControls } from '@wordpress/block-editor';
-
 /**
  * WordPress Dependencies
  */
-const { addFilter } = wp.hooks;
-const { __ } = wp.i18n;
-const { createHigherOrderComponent } = wp.compose;
-const { Fragment } = wp.element;
-const { PanelBody, TextControl } = wp.components;
-const { registerBlockVariation } = wp.blocks;
-
-import './style.scss';
+import { InspectorControls } from '@wordpress/block-editor';
+import { registerBlockVariation } from '@wordpress/blocks';
+import { TextControl, SelectControl, ToggleControl, RangeControl, PanelBody } from '@wordpress/components';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { __ } from '@wordpress/i18n';
+import { addFilter } from '@wordpress/hooks';
+import { Fragment } from '@wordpress/element';
 
 /**
  * @link https://developer.wordpress.org/block-editor/how-to-guides/block-tutorial/extending-the-query-loop-block/
@@ -28,9 +25,9 @@ registerBlockVariation(
 		allowedControls: [ 'postType' ],
 		attributes: {
 			namespace: 'pronamic/slider',
-			sliderSettings: null,
+			className: 'swiper',
 			query: {
-				postType: 'camping',
+				postType: 'post',
 			}
 		},
 		innerBlocks: [
@@ -49,6 +46,40 @@ registerBlockVariation(
 );
 
 /**
+ * New attributes
+ * 
+ * @param settings
+ * @param name
+ * 
+ * We can't add new attributes by default. Need the restierBlockType filter for that.
+ */
+const blockAttributes = ( settings, name ) => {
+	if ( 'core/query' !== name ) {
+		return settings;
+	}
+
+	if ( ! settings.attributes.namespace ) {
+		return settings;
+	}
+
+	settings.attributes = {
+		...settings.attributes,
+		slidesToShow: { 
+			type: 'integer',
+			default: 1
+		}
+	};
+
+	return settings;
+};
+
+addFilter(
+	'blocks.registerBlockType',
+	'pronamic/slider',
+	blockAttributes
+);
+
+/**
  * Slider controls
  */
 export const sliderControls = createHigherOrderComponent(
@@ -60,24 +91,27 @@ export const sliderControls = createHigherOrderComponent(
 			} = props;
 
 			const {
+				slidesToShow,
 				namespace
 			} = attributes;
+
+			if ( 'pronamic/slider' !== namespace ) {
+				return (
+					<BlockEdit { ...props } />
+				);
+			}
 
 			return (
 				<Fragment>
 					<BlockEdit { ...props } />
 					<InspectorControls>
 						<PanelBody title={ __( 'Settings' ) } initialOpen={ true }>
-							<TextControl
-								label={ __( 'Namespace' ) }
-								value={ namespace }
-								onChange={ ( namespaceValue ) => {
-									props.setAttributes(
-										{
-											namespace: namespaceValue,
-										}
-									);
-								} }
+							<RangeControl
+								label={ __( 'Slides to show', 'pronamic-slider' ) }
+								value={ slidesToShow }
+								onChange={ ( slidesToShow ) => setAttributes( { slidesToShow } ) }
+								min={ 1 }
+								max={ 10 }
 							/>
 						</PanelBody>
 					</InspectorControls>
@@ -101,8 +135,7 @@ export const addSliderWrapperAttributes = createHigherOrderComponent(
 		return ( props ) => {
 			const wrapperProps = {
 				...props.wrapperProps,
-				'data-swiper-settings': 'slider-settings',
-				//'className': 'slider-class'
+				'data-swiper-settings': 'slider-settings'
 			};
 			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
 		};
@@ -113,31 +146,4 @@ addFilter(
 	'editor.BlockListBlock',
 	'pronamic/slider',
 	addSliderWrapperAttributes
-);
-
-/**
- * Add extra props to the root element of the save function.
- * 
- * @param object props
- * @param object blockType
- * @param object attributes
- */
-function addSliderAttributes( props, blockType, attributes ) {
-	if ( 'core/query' !== blockType.name ) {
-		return {
-			...props
-		};
-	}
-
-	return {
-		...props,
-		//'className': 'slider-class',
-	   'data-swiper-settings': 'slider-settings'
-	};
-}
-
-addFilter(
-	'blocks.getSaveContent.extraProps',
-	'pronamic/slider',
-	addSliderAttributes
 );

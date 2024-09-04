@@ -14,14 +14,14 @@ registerBlockType(
 		edit: ( { attributes, setAttributes } ) => {
 			return (
 				<div { ...useBlockProps() }>
-					PAGINATION
+					<div class="swiper-pagination"></div>
 				</div>
 			);
 		},
 		save: ( { attributes } ) => {
 			return (
 				<div { ...useBlockProps.save() }>
-					PAGINATION
+					<div class="swiper-pagination"></div>
 				</div>
 			);
 		},

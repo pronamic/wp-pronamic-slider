@@ -14,14 +14,16 @@ registerBlockType(
 		edit: ( { attributes, setAttributes } ) => {
 			return (
 				<div { ...useBlockProps() }>
-					NAVIGATION
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
 				</div>
 			);
 		},
 		save: ( { attributes } ) => {
 			return (
 				<div { ...useBlockProps.save() }>
-					NAVIGATION
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
 				</div>
 			);
 		},

@@ -1,15 +1,31 @@
+// core version + navigation, pagination modules:
 import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
 
+// import Swiper and modules styles
 import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 document.addEventListener(
 	'DOMContentLoaded', (event) => {
 		const blockSlider = new Swiper(
-			'.slider-class', {
-				wrapperClass: 'wp-block-post-template',
-				slideClass: 'wp-block-post',
+			'[data-swiper-settings]',
+			{
+				modules: [ Navigation, Pagination ],
 				spaceBetween: 24,
-				slidesPerView: 4,
+				slidesPerView: 2,
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+				pagination: {
+					el: '.swiper-pagination',
+				},
+				scrollbar: {
+					el: '.swiper-scrollbar',
+					hide: true,
+				},
 				breakpoints: {
 					782: {
 						slidesPerView: 2,
