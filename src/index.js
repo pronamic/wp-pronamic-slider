@@ -4,7 +4,7 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { registerBlockVariation } from '@wordpress/blocks';
-import { TextControl, SelectControl, ToggleControl, RangeControl, PanelBody } from '@wordpress/components';
+import { ToggleControl, RangeControl, PanelBody } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
@@ -51,7 +51,7 @@ registerBlockVariation(
  * @param settings
  * @param name
  * 
- * We can't add new attributes by default. Need the restierBlockType filter for that.
+ * We can't add new attributes by default. Need the registerBlockType filter for that.
  */
 const blockAttributes = ( settings, name ) => {
 	if ( 'core/query' !== name ) {
@@ -64,7 +64,7 @@ const blockAttributes = ( settings, name ) => {
 
 	settings.attributes = {
 		...settings.attributes,
-		slidesToShow: { 
+		slidesPerView: { 
 			type: 'integer',
 			default: 1
 		}
@@ -91,7 +91,7 @@ export const sliderControls = createHigherOrderComponent(
 			} = props;
 
 			const {
-				slidesToShow,
+				slidesPerView,
 				namespace
 			} = attributes;
 
@@ -107,9 +107,9 @@ export const sliderControls = createHigherOrderComponent(
 					<InspectorControls>
 						<PanelBody title={ __( 'Settings' ) } initialOpen={ true }>
 							<RangeControl
-								label={ __( 'Slides to show', 'pronamic-slider' ) }
-								value={ slidesToShow }
-								onChange={ ( slidesToShow ) => setAttributes( { slidesToShow } ) }
+								label={ __( 'Slides per view', 'pronamic-slider' ) }
+								value={ slidesPerView }
+								onChange={ ( slidesPerView ) => setAttributes( { slidesPerView } ) }
 								min={ 1 }
 								max={ 10 }
 							/>
@@ -125,25 +125,4 @@ addFilter(
 	'editor.BlockEdit',
 	'pronamic/slider',
 	sliderControls
-);
-
-/**
- * Modify the block’s wrapper component containing the block’s edit component.
- */
-export const addSliderWrapperAttributes = createHigherOrderComponent(
-	( BlockListBlock ) => {
-		return ( props ) => {
-			const wrapperProps = {
-				...props.wrapperProps,
-				'data-swiper-settings': 'slider-settings'
-			};
-			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
-		};
-	}
-);
-
-addFilter(
-	'editor.BlockListBlock',
-	'pronamic/slider',
-	addSliderWrapperAttributes
 );

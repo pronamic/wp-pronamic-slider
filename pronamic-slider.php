@@ -42,7 +42,9 @@ function pronamic_slider_init() {
 
 \add_action( 'init', 'pronamic_slider_init' );
 
-// Enqueue frontend scripts and styles
+/**
+ * Enqueue Slick frontend scripts and styles
+ */
 \add_action(
 	'wp_enqueue_scripts',
 	function() {
@@ -64,7 +66,9 @@ function pronamic_slider_init() {
 	}
 );
 
-// Enqueue editor scripts and styles
+/**
+ * Enqueue editor scripts
+ */
 \add_action(
 	'enqueue_block_editor_assets',
 	function() {
@@ -85,8 +89,11 @@ function pronamic_slider_init() {
 \add_action(
 	'init',
 	function() {
+		// Slick
 		\register_block_type( __DIR__ . '/blocks/slider' );
 		\register_block_type( __DIR__ . '/blocks/slide' );
+
+		// Swiper
 		\register_block_type( __DIR__ . '/blocks/slider-navigation' );
 		\register_block_type( __DIR__ . '/blocks/slider-pagination' );
 		\register_block_type( __DIR__ . '/blocks/slider-scrollbar' );
@@ -107,9 +114,11 @@ function pronamic_slider_init() {
 			return $block_content;
 		}
 
-		$slider_settings = [
-			'number' => $block['attrs']['slidesToShow']
-		];
+		$slider_settings = [];
+
+		if ( isset( $block['attrs']['slidesPerView'] ) ) {
+			$slider_settings[ 'slidesPerView' ] = $block['attrs']['slidesPerView'];
+		}
 
 		$processor = new \WP_HTML_Tag_Processor( $block_content );
 
