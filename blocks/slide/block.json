@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pronamic/slide",
+  "version": "1.0.0",
+  "title": "Pronamic Slide",
+  "category": "pronamic",
+  "parent": "pronamic/slider",
+  "icon": "smiley",
+  "textdomain": "pronamic-slider",
+  "editorScript": "file:./index.js"
+}

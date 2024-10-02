@@ -6,18 +6,18 @@
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build",
+		"build": "wp-scripts build src/view.js src/index.js --output-path=build",
+		"build-blocks": "wp-scripts build --webpack-src-dir=blocks-src --output-path=blocks",
 		"format:js": "wp-scripts format-js",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update",
-		"js-build": "terser src/script.js -o js/script.min.js"
+		"packages-update": "wp-scripts packages-update"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^12.2.0"
+		"@wordpress/scripts": "^30.0.2"
 	},
 	"dependencies": {
-		"terser": "^5.3.1"
+		"swiper": "^11.1.14"
 	}
 }

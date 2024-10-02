@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pronamic/slider",
+  "version": "1.0.0",
+  "title": "Pronamic Slider",
+  "category": "pronamic",
+  "icon": "smiley",
+  "attributes": {
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "navigation": {
+      "type": "boolean",
+      "default": true
+    },
+    "pagination": {
+      "type": "boolean",
+      "default": true
+    },
+    "effect": {
+      "type": "string"
+    },
+    "slidesPerView": {
+      "type": "integer",
+      "default": 1
+    }
+  },
+  "textdomain": "pronamic-slider",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "viewScript": [
+    "pronamic-query-loop-slider"
+  ],
+  "viewStyle": [
+    "pronamic-query-loop-slider"
+  ]
+}
