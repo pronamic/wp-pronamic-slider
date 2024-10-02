@@ -65,7 +65,7 @@
 );
 
 /**
- * Render Slider Query Loop block
+ * Add slider settings to Pronamic Slider Query block and add slider wrapper.
  */
 \add_filter(
 	'render_block',
@@ -78,11 +78,7 @@
 			return $block_content;
 		}
 
-		$slider_settings = [];
-
-		if ( isset( $block['attrs']['slidesPerView'] ) ) {
-			$slider_settings[ 'slidesPerView' ] = $block['attrs']['slidesPerView'];
-		}
+		$slider_settings = pronamic_slider_get_settings( $block['attrs'] );
 
 		$processor = new \WP_HTML_Tag_Processor( $block_content );
 
@@ -103,3 +99,54 @@
 	20,
 	2
 );
+
+/**
+ * Add slider settings to Pronamic Slider block.
+ */
+\add_filter(
+	'render_block',
+	function( $block_content, $block ) {
+		if ( 'pronamic/slider' !== $block['blockName'] ) {
+			return $block_content;
+		}
+
+		$slider_settings = pronamic_slider_get_settings( $block['attrs'] );
+
+		$processor = new \WP_HTML_Tag_Processor( $block_content );
+
+		if ( $processor->next_tag( 'div' ) ) {
+			$processor->set_attribute( 'data-swiper-settings', wp_json_encode( $slider_settings ) );
+		}
+
+		return $processor->get_updated_html();
+	},
+	20,
+	2
+);
+
+/**
+ * Get slider settings.
+ * 
+ * @param array $attrs
+ */
+function pronamic_slider_get_settings( $attrs ) {
+	$slider_settings = [
+		'slidesPerView' => 1,
+		'pagination'    => true,
+		'navigation'    => true,
+	];
+
+	if ( isset( $attrs['slidesPerView'] ) ) {
+		$slider_settings[ 'slidesPerView' ] = $attrs['slidesPerView'];
+	}
+
+	if ( isset( $attrs['pagination'] ) ) {
+		$slider_settings[ 'pagination' ] = $attrs['pagination'];
+	}
+
+	if ( isset( $attrs['navigation'] ) ) {
+		$slider_settings[ 'navigation' ] = $attrs['navigation'];
+	}
+
+	return $slider_settings;
+}

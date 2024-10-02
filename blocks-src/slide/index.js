@@ -9,11 +9,23 @@ import metadata from './block.json';
 
 registerBlockType(
 	metadata.name, {
-		edit: ( { attributes, setAttributes } ) => {
-			return <div className={ 'swiper-slide' }><InnerBlocks /></div>;
+		edit: () => {
+			const blockProps = useBlockProps(
+				{
+					className: 'swiper-slide'
+				}
+			);
+	
+			return <div { ...blockProps }><InnerBlocks /></div>;
 		},
-		save: ( { attributes } ) => {
-			return <div className={ 'swiper-slide' }><InnerBlocks.Content /></div>;
+		save: () => {
+			const blockProps = useBlockProps.save(
+				{
+					className: 'swiper-slide'
+				}
+			);
+
+			return <div { ...blockProps }><InnerBlocks.Content /></div>;
 		},
 	}
 );

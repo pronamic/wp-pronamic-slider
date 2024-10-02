@@ -15,24 +15,12 @@ registerBlockType(
 		edit: ( { attributes, setAttributes } ) => {
 			const allowedBlocks = [ 'pronamic/slide' ];
 
-			const autoplay      = attributes.autoplay ? true : false;
-			const effect        = attributes.effect ? attributes.effect : 'slide';
-			const slidesPerView = attributes.slidesPerView ? attributes.slidesPerView : 1;
-			const navigation    = attributes.navigation ? true : false;
-			const pagination    = attributes.pagination ? true : false;
+			const blockProps = useBlockProps(
+				{
+					className: 'swiper'
+				}
+			);
 
-			const blockClasses = `swiper pronamic-block-slider`;
-		
-			var swiperConfig = {
-				'autoplay': autoplay,
-				'effect': effect,
-				'slidesPerView': slidesPerView,
-				'navigation': navigation,
-				'pagination': pagination
-			};
-		
-			swiperConfig = JSON.stringify( swiperConfig );
-		
 			return (
 				<div>
 					<InspectorControls>
@@ -74,8 +62,8 @@ registerBlockType(
 							/>
 						</PanelBody>
 					</InspectorControls>
-		
-					<div className={ blockClasses } data-swiper-settings={ swiperConfig }>
+
+					<div { ...blockProps }>
 						<div class="swiper-wrapper">
 							<InnerBlocks allowedBlocks={ allowedBlocks } />
 						</div>
@@ -84,26 +72,14 @@ registerBlockType(
 			);
 		},
 		save: ( { attributes } ) => {
-			const autoplay      = attributes.autoplay ? true : false;
-			const effect        = attributes.effect ? attributes.effect : 'slide';
-			const slidesPerView = attributes.slidesPerView ? attributes.slidesPerView : 1;
-			const pagination    = attributes.pagination ? true : false;
-			const navigation    = attributes.navigation ? true : false;
+			const blockProps = useBlockProps.save(
+				{
+					className: 'swiper'
+				}
+			);
 
-			const blockClasses = `swiper pronamic-block-slider`;
-		
-			var swiperConfig = {
-				'autoplay': autoplay,
-				'effect': effect,
-				'slidesPerView': slidesPerView,
-				'pagination': pagination,
-				'navigation': navigation
-			};
-		
-			swiperConfig = JSON.stringify( swiperConfig );
-		
 			return (
-				<div className={ blockClasses } data-swiper-settings={ swiperConfig }>
+				<div { ...blockProps }>
 					<div class="swiper-wrapper">
 						<InnerBlocks.Content />
 					</div>
