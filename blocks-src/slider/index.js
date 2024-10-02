@@ -18,15 +18,17 @@ registerBlockType(
 			const autoplay      = attributes.autoplay ? true : false;
 			const effect        = attributes.effect ? attributes.effect : 'slide';
 			const slidesPerView = attributes.slidesPerView ? attributes.slidesPerView : 1;
-			const arrows        = attributes.arrows ? true : false;
-			const dots          = attributes.dots ? true : false;
+			const navigation    = attributes.navigation ? true : false;
+			const pagination    = attributes.pagination ? true : false;
 
 			const blockClasses = `swiper pronamic-block-slider`;
 		
 			var swiperConfig = {
 				'autoplay': autoplay,
 				'effect': effect,
-				'slidesPerView': slidesPerView
+				'slidesPerView': slidesPerView,
+				'navigation': navigation,
+				'pagination': pagination
 			};
 		
 			swiperConfig = JSON.stringify( swiperConfig );
@@ -50,15 +52,15 @@ registerBlockType(
 							/>
 
 							<ToggleControl
-								label={ __( 'Show arrows', 'pronamic-slider' ) }
-								checked={ attributes.arrows }
-								onChange={ ( arrows ) => setAttributes( { arrows } ) }
+								label={ __( 'Pagination', 'pronamic-slider' ) }
+								checked={ attributes.pagination }
+								onChange={ ( pagination ) => setAttributes( { pagination } ) }
 							/>
 
 							<ToggleControl
-								label={ __( 'Show dots', 'pronamic-slider' ) }
-								checked={ attributes.dots }
-								onChange={ ( dots ) => setAttributes( { dots } ) }
+								label={ __( 'Navigation', 'pronamic-slider' ) }
+								checked={ attributes.navigation }
+								onChange={ ( navigation ) => setAttributes( { navigation } ) }
 							/>
 
 							<SelectControl
@@ -77,11 +79,6 @@ registerBlockType(
 						<div class="swiper-wrapper">
 							<InnerBlocks allowedBlocks={ allowedBlocks } />
 						</div>
-
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-button-next"></div>
-
-						<div class="swiper-pagination"></div>
 					</div>
 				</div>
 			);
@@ -90,15 +87,17 @@ registerBlockType(
 			const autoplay      = attributes.autoplay ? true : false;
 			const effect        = attributes.effect ? attributes.effect : 'slide';
 			const slidesPerView = attributes.slidesPerView ? attributes.slidesPerView : 1;
-			const dots          = attributes.dots ? true : false;
-			const arrows        = attributes.arrows ? true : false;
+			const pagination    = attributes.pagination ? true : false;
+			const navigation    = attributes.navigation ? true : false;
 
 			const blockClasses = `swiper pronamic-block-slider`;
 		
 			var swiperConfig = {
 				'autoplay': autoplay,
 				'effect': effect,
-				'slidesPerView': slidesPerView
+				'slidesPerView': slidesPerView,
+				'pagination': pagination,
+				'navigation': navigation
 			};
 		
 			swiperConfig = JSON.stringify( swiperConfig );
@@ -108,11 +107,6 @@ registerBlockType(
 					<div class="swiper-wrapper">
 						<InnerBlocks.Content />
 					</div>
-
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
-
-					<div class="swiper-pagination"></div>
 				</div>
 			);
 		},

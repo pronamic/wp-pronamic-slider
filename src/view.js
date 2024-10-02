@@ -15,7 +15,7 @@ import 'swiper/css/pagination';
  * Swiper settings
  */
 document.addEventListener(
-	'DOMContentLoaded', (event) => {
+	'DOMContentLoaded', ( event ) => {
 		const sliderElements = document.querySelectorAll( '[data-swiper-settings]' );
 	
 		sliderElements.forEach(
@@ -24,6 +24,7 @@ document.addEventListener(
 
 				const swiperSettingsObject = JSON.parse( swiperSettings );
 
+				// Autoplay
 				var autoplaySettings = false;
 
 				if ( swiperSettingsObject.autoplay ) {
@@ -33,6 +34,38 @@ document.addEventListener(
 					}
 				}
 
+				// Pagination
+				var paginationSettings = false;
+
+				if ( swiperSettingsObject.pagination ) {
+					const paginationElement = document.createElement( 'div' );
+					paginationElement.classList.add( 'swiper-pagination' );
+					sliderElement.appendChild( paginationElement );
+
+					paginationSettings = {
+						el: paginationElement
+					};
+				}
+
+				// Navigation
+				var navigationSettings = false;
+
+				if ( swiperSettingsObject.navigation ) {
+					const nextButton = document.createElement( 'div' );
+					nextButton.classList.add( 'swiper-button-next' );
+					sliderElement.appendChild( nextButton );
+
+					const prevButton = document.createElement( 'div' );
+					prevButton.classList.add( 'swiper-button-prev' );
+					sliderElement.appendChild( prevButton );
+
+					navigationSettings = {
+						nextEl: nextButton,
+						prevEl: prevButton
+					};
+				}
+
+				// Slider
 				const blockSlider = new Swiper(
 					sliderElement,
 					{
@@ -40,17 +73,8 @@ document.addEventListener(
 						spaceBetween: 24,
 						slidesPerView: 1,
 						autoplay: autoplaySettings,
-						navigation: {
-							nextEl: sliderElement.querySelector( '.swiper-button-next' ),
-							prevEl: sliderElement.querySelector( '.swiper-button-prev' )
-						},
-						pagination: {
-							el: sliderElement.querySelector( '.swiper-pagination' ),
-						},
-						scrollbar: {
-							el: sliderElement.querySelector( '.swiper-scrollbar' ),
-							hide: true,
-						},
+						navigation: navigationSettings,
+						pagination: paginationSettings,
 						breakpoints: {
 							782: {
 								slidesPerView: swiperSettingsObject.slidesPerView,
