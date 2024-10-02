@@ -12,14 +12,12 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update",
-		"copy": "copyfiles -f node_modules/slick-carousel/slick/slick.css node_modules/slick-carousel/slick/slick-theme.css node_modules/slick-carousel/slick/slick.js vendor/slick"
+		"packages-update": "wp-scripts packages-update"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^28.5.0"
+		"@wordpress/scripts": "^30.0.2"
 	},
 	"dependencies": {
-		"slick-carousel": "^1.8.1",
-		"swiper": "^11.1.9"
+		"swiper": "^11.1.14"
 	}
 }

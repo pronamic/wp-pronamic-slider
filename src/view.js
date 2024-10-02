@@ -2,7 +2,7 @@
  * Swiper Dependencies
  */
 import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 /**
  * Swiper styles
@@ -24,12 +24,22 @@ document.addEventListener(
 
 				const swiperSettingsObject = JSON.parse( swiperSettings );
 
+				var autoplaySettings = false;
+
+				if ( swiperSettingsObject.autoplay ) {
+					autoplaySettings = {
+						delay: 2000,
+						disableOnInteraction: true,
+					}
+				}
+
 				const blockSlider = new Swiper(
 					sliderElement,
 					{
-						modules: [ Navigation, Pagination ],
+						modules: [ Navigation, Pagination, Autoplay ],
 						spaceBetween: 24,
 						slidesPerView: 1,
+						autoplay: autoplaySettings,
 						navigation: {
 							nextEl: sliderElement.querySelector( '.swiper-button-next' ),
 							prevEl: sliderElement.querySelector( '.swiper-button-prev' )

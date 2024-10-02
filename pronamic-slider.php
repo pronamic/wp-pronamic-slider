@@ -12,38 +12,7 @@
  */
 
 /**
- * Register slick assets
- */
-function pronamic_slider_init() {
-	\wp_register_script(
-		'slick',
-		\plugins_url( 'vendor/slick/slick.js', __FILE__ ),
-		[
-			'jquery',
-		],
-		'1.8.1',
-		true
-	);
-
-	\wp_register_style(
-		'slick',
-		\plugins_url( 'vendor/slick/slick.css', __FILE__ ),
-		[],
-		'1.8.1'
-	);
-
-	\wp_register_style(
-		'slick-theme',
-		\plugins_url( 'vendor/slick/slick-theme.css', __FILE__ ),
-		[],
-		'1.8.1'
-	);
-}
-
-\add_action( 'init', 'pronamic_slider_init' );
-
-/**
- * Enqueue Slick frontend scripts and styles
+ * Enqueue frontend scripts and styles
  */
 \add_action(
 	'wp_enqueue_scripts',
@@ -89,11 +58,11 @@ function pronamic_slider_init() {
 \add_action(
 	'init',
 	function() {
-		// Slick
+		// Swiper blocks
 		\register_block_type( __DIR__ . '/blocks/slider' );
 		\register_block_type( __DIR__ . '/blocks/slide' );
 
-		// Swiper
+		// Swiper query block
 		\register_block_type( __DIR__ . '/blocks/slider-navigation' );
 		\register_block_type( __DIR__ . '/blocks/slider-pagination' );
 		\register_block_type( __DIR__ . '/blocks/slider-scrollbar' );

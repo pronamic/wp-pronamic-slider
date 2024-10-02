@@ -8,7 +8,6 @@ import { __ } from '@wordpress/i18n';
 
 import metadata from './block.json';
 
-import './style.scss';
 import './editor.scss';
 
 registerBlockType(
@@ -16,52 +15,30 @@ registerBlockType(
 		edit: ( { attributes, setAttributes } ) => {
 			const allowedBlocks = [ 'pronamic/slide' ];
 
-			const arrows           = attributes.arrows ? true : false;
-			const autoplay         = attributes.autoplay ? true : false;
-			const dots             = attributes.dots ? true : false;
-			const fade             = attributes.fade ? true : false;
-			const slidesToScroll   = attributes.slidesToScroll ? attributes.slidesToScroll : 1;
-			const slidesToShow     = attributes.slidesToShow ? attributes.slidesToShow : 1;
-			const controlsPosition = attributes.controlsPosition;
+			const autoplay      = attributes.autoplay ? true : false;
+			const effect        = attributes.effect ? attributes.effect : 'slide';
+			const slidesPerView = attributes.slidesPerView ? attributes.slidesPerView : 1;
+			const arrows        = attributes.arrows ? true : false;
+			const dots          = attributes.dots ? true : false;
+
+			const blockClasses = `swiper pronamic-block-slider`;
 		
-			const controlsPositionClass = 'pronamic-block-slider--' + controlsPosition;
-			const blockClasses          = `pronamic-block-slider ${ controlsPositionClass }`;
-		
-			var slickConfig = {
-				'arrows': arrows,
+			var swiperConfig = {
 				'autoplay': autoplay,
-				'dots': dots,
-				'fade': fade,
-				'slidesToScroll': slidesToScroll,
-				'slidesToShow': slidesToShow,
-				'responsive': [
-					{
-						breakpoint: 767,
-						settings: {
-							slidesToShow: 1,
-						}
-					}
-				]
+				'effect': effect,
+				'slidesPerView': slidesPerView
 			};
 		
-			slickConfig = JSON.stringify( slickConfig );
+			swiperConfig = JSON.stringify( swiperConfig );
 		
 			return (
 				<div>
 					<InspectorControls>
 						<PanelBody title={ __( 'Settings','pronamic-slider' ) } initialOpen={ true }>
 							<RangeControl
-								label={ __( 'Slides to show', 'pronamic-slider' ) }
-								value={ attributes.slidesToShow }
-								onChange={ ( slidesToShow ) => setAttributes( { slidesToShow } ) }
-								min={ 1 }
-								max={ 10 }
-							/>
-
-							<RangeControl
-								label={ __( 'Slides to scroll', 'pronamic-slider' ) }
-								value={ attributes.slidesToScroll }
-								onChange={ ( slidesToScroll ) => setAttributes( { slidesToScroll } ) }
+								label={ __( 'Slides per view', 'pronamic-slider' ) }
+								value={ attributes.slidesPerView }
+								onChange={ ( slidesPerView ) => setAttributes( { slidesPerView } ) }
 								min={ 1 }
 								max={ 10 }
 							/>
@@ -84,64 +61,58 @@ registerBlockType(
 								onChange={ ( dots ) => setAttributes( { dots } ) }
 							/>
 
-							<ToggleControl
-								label={ __( 'Fade', 'pronamic-slider' ) }
-								checked={ attributes.fade }
-								onChange={ ( fade ) => setAttributes( { fade } ) }
-							/>
-
 							<SelectControl
-								label={ __( 'Controls position', 'pronamic-slider' ) }
-								value={ controlsPosition }
+								label={ __( 'Effect', 'pronamic-slider' ) }
+								value={ attributes.effect }
 								options={ [
-									{ label: __( 'Outside', 'pronamic-slider' ), value: 'outside' },
-									{ label: __( 'Inside', 'pronamic-slider' ), value: 'inside' },
+									{ label: __( 'Slide', 'pronamic-slider' ), value: 'slide' },
+									{ label: __( 'Fade', 'pronamic-slider' ), value: 'fade' },
 								] }
-								onChange={ ( controlsPosition ) => setAttributes( { controlsPosition } ) }
+								onChange={ ( effect ) => setAttributes( { effect } ) }
 							/>
 						</PanelBody>
 					</InspectorControls>
 		
-					<div className={ blockClasses } data-slick={ slickConfig }>
-						<InnerBlocks allowedBlocks={ allowedBlocks } />
+					<div className={ blockClasses } data-swiper-settings={ swiperConfig }>
+						<div class="swiper-wrapper">
+							<InnerBlocks allowedBlocks={ allowedBlocks } />
+						</div>
+
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+
+						<div class="swiper-pagination"></div>
 					</div>
 				</div>
 			);
 		},
 		save: ( { attributes } ) => {
-			const arrows           = attributes.arrows ? true : false;
-			const autoplay         = attributes.autoplay ? true : false;
-			const dots             = attributes.dots ? true : false;
-			const fade             = attributes.fade ? true : false;
-			const slidesToScroll   = attributes.slidesToScroll ? attributes.slidesToScroll : 1;
-			const slidesToShow     = attributes.slidesToShow ? attributes.slidesToShow : 1;
-			const controlsPosition = attributes.controlsPosition;
+			const autoplay      = attributes.autoplay ? true : false;
+			const effect        = attributes.effect ? attributes.effect : 'slide';
+			const slidesPerView = attributes.slidesPerView ? attributes.slidesPerView : 1;
+			const dots          = attributes.dots ? true : false;
+			const arrows        = attributes.arrows ? true : false;
+
+			const blockClasses = `swiper pronamic-block-slider`;
 		
-			const controlsPositionClass = 'pronamic-block-slider--' + controlsPosition;
-			const blockClasses          = `pronamic-block-slider ${ controlsPositionClass }`;
-		
-			var slickConfig = {
-				'arrows': arrows,
+			var swiperConfig = {
 				'autoplay': autoplay,
-				'dots': dots,
-				'fade': fade,
-				'slidesToScroll': slidesToScroll,
-				'slidesToShow': slidesToShow,
-				'responsive': [
-					{
-						breakpoint: 767,
-						settings: {
-							slidesToShow: 1,
-						}
-					}
-				]
+				'effect': effect,
+				'slidesPerView': slidesPerView
 			};
 		
-			slickConfig = JSON.stringify( slickConfig );
+			swiperConfig = JSON.stringify( swiperConfig );
 		
 			return (
-				<div className={ blockClasses } data-slick={ slickConfig }>
-					<InnerBlocks.Content />
+				<div className={ blockClasses } data-swiper-settings={ swiperConfig }>
+					<div class="swiper-wrapper">
+						<InnerBlocks.Content />
+					</div>
+
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+
+					<div class="swiper-pagination"></div>
 				</div>
 			);
 		},
