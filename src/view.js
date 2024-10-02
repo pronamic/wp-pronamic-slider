@@ -2,7 +2,7 @@
  * Swiper Dependencies
  */
 import Swiper from 'swiper';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules';
 
 /**
  * Swiper styles
@@ -69,7 +69,7 @@ document.addEventListener(
 				const blockSlider = new Swiper(
 					sliderElement,
 					{
-						modules: [ Navigation, Pagination, Autoplay ],
+						modules: [ Navigation, Pagination, Autoplay, EffectFade ],
 						spaceBetween: 24,
 						slidesPerView: 1,
 						autoplay: autoplaySettings,

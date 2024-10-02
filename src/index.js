@@ -4,7 +4,7 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { registerBlockVariation } from '@wordpress/blocks';
-import { ToggleControl, RangeControl, PanelBody } from '@wordpress/components';
+import { ToggleControl, RangeControl, PanelBody, SelectControl } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
@@ -67,6 +67,21 @@ const blockAttributes = ( settings, name ) => {
 		slidesPerView: { 
 			type: 'integer',
 			default: 1
+		},
+		navigation: {
+			type: 'boolean',
+			default: true
+		},
+		pagination: {
+			type: 'boolean',
+			default: true
+		},
+		autoplay: {
+			type: 'boolean',
+			default: false
+		},
+		effect: {
+			type: 'string'
 		}
 	};
 
@@ -90,12 +105,7 @@ export const sliderControls = createHigherOrderComponent(
 				setAttributes,
 			} = props;
 
-			const {
-				slidesPerView,
-				namespace
-			} = attributes;
-
-			if ( 'pronamic/slider' !== namespace ) {
+			if ( 'pronamic/slider' !== attributes.namespace ) {
 				return (
 					<BlockEdit { ...props } />
 				);
@@ -108,10 +118,38 @@ export const sliderControls = createHigherOrderComponent(
 						<PanelBody title={ __( 'Settings' ) } initialOpen={ true }>
 							<RangeControl
 								label={ __( 'Slides per view', 'pronamic-slider' ) }
-								value={ slidesPerView }
+								value={ attributes.slidesPerView }
 								onChange={ ( slidesPerView ) => setAttributes( { slidesPerView } ) }
 								min={ 1 }
 								max={ 10 }
+							/>
+
+							<ToggleControl
+								label={ __( 'Pagination', 'pronamic-slider' ) }
+								checked={ attributes.pagination }
+								onChange={ ( pagination ) => setAttributes( { pagination } ) }
+							/>
+
+							<ToggleControl
+								label={ __( 'Navigation', 'pronamic-slider' ) }
+								checked={ attributes.navigation }
+								onChange={ ( navigation ) => setAttributes( { navigation } ) }
+							/>
+
+							<ToggleControl
+								label={ __( 'Autoplay', 'pronamic-slider' ) }
+								checked={ attributes.autoplay }
+								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
+							/>
+
+							<SelectControl
+								label={ __( 'Effect', 'pronamic-slider' ) }
+								value={ attributes.effect }
+								options={ [
+									{ label: __( 'Slide', 'pronamic-slider' ), value: 'slide' },
+									{ label: __( 'Fade', 'pronamic-slider' ), value: 'fade' },
+								] }
+								onChange={ ( effect ) => setAttributes( { effect } ) }
 							/>
 						</PanelBody>
 					</InspectorControls>

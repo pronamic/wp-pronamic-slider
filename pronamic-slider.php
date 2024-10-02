@@ -134,6 +134,8 @@ function pronamic_slider_get_settings( $attrs ) {
 		'slidesPerView' => 1,
 		'pagination'    => true,
 		'navigation'    => true,
+		'autoplay'      => false,
+		'effect'        => 'slide',
 	];
 
 	if ( isset( $attrs['slidesPerView'] ) ) {
@@ -146,6 +148,14 @@ function pronamic_slider_get_settings( $attrs ) {
 
 	if ( isset( $attrs['navigation'] ) ) {
 		$slider_settings[ 'navigation' ] = $attrs['navigation'];
+	}
+
+	if ( isset( $attrs['autoplay'] ) ) {
+		$slider_settings[ 'autoplay' ] = $attrs['autoplay'];
+	}
+
+	if ( isset( $attrs['effect'] ) ) {
+		$slider_settings[ 'effect' ] = $attrs['effect'];
 	}
 
 	return $slider_settings;

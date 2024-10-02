@@ -34,12 +34,6 @@ registerBlockType(
 							/>
 
 							<ToggleControl
-								label={ __( 'Autoplay', 'pronamic-slider' ) }
-								checked={ attributes.autoplay }
-								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
-							/>
-
-							<ToggleControl
 								label={ __( 'Pagination', 'pronamic-slider' ) }
 								checked={ attributes.pagination }
 								onChange={ ( pagination ) => setAttributes( { pagination } ) }
@@ -49,6 +43,12 @@ registerBlockType(
 								label={ __( 'Navigation', 'pronamic-slider' ) }
 								checked={ attributes.navigation }
 								onChange={ ( navigation ) => setAttributes( { navigation } ) }
+							/>
+
+							<ToggleControl
+								label={ __( 'Autoplay', 'pronamic-slider' ) }
+								checked={ attributes.autoplay }
+								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
 							/>
 
 							<SelectControl
