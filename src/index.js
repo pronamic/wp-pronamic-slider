@@ -18,10 +18,10 @@ import { Fragment } from '@wordpress/element';
 registerBlockVariation(
 	'core/query', {
 		name: 'pronamic/slider',
-		title: 'Slider',
-		description: 'Displays a slider.',
+		title: 'Pronamic query loop slider',
+		description: 'Displays a query loop slider.',
 		isActive: [ 'namespace' ],
-		icon: 'admin-site',
+		icon: 'slides',
 		allowedControls: [ 'postType' ],
 		attributes: {
 			namespace: 'pronamic/slider',

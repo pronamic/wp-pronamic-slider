@@ -61,6 +61,10 @@
 		// Swiper blocks
 		\register_block_type( __DIR__ . '/blocks/slider' );
 		\register_block_type( __DIR__ . '/blocks/slide' );
+
+		// Swiper query block
+		\register_block_type( __DIR__ . '/blocks/slider-navigation' );
+		\register_block_type( __DIR__ . '/blocks/slider-pagination' );
 	}
 );
 

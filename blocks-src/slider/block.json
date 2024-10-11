@@ -3,9 +3,9 @@
 	"apiVersion": 3,
 	"name": "pronamic/slider",
 	"version": "1.0.0",
-	"title": "Pronamic Slider",
+	"title": "Pronamic slider",
 	"category": "pronamic",
-	"icon": "smiley",
+	"icon": "slides",
 	"attributes": {
 		"autoplay" : {
 			"type": "boolean",

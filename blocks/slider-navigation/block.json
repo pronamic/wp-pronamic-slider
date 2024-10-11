@@ -1,12 +1,11 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "pronamic/slide",
+  "name": "pronamic/slider-navigation",
   "version": "1.0.0",
-  "title": "Pronamic slider slide",
+  "title": "Pronamic slider navigation",
   "category": "pronamic",
-  "parent": "pronamic/slider",
-  "icon": "text",
+  "icon": "leftright",
   "textdomain": "pronamic-slider",
   "editorScript": "file:./index.js"
 }
