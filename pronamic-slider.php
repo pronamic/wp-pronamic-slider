@@ -20,14 +20,14 @@
 		$script_asset = require __DIR__ . '/build/index.asset.php';
 
 		wp_enqueue_style(
-			'pronamic-query-loop-slider',
+			'pronamic-slider',
 			plugins_url( 'build/view.css', __FILE__ ),
 			[],
 			$script_asset['version']
 		);
 	
 		\wp_enqueue_script(
-			'pronamic-query-loop-slider',
+			'pronamic-slider',
 			plugins_url( 'build/view.js', __FILE__ ),
 			$script_asset['dependencies'],
 			$script_asset['version']
@@ -137,9 +137,8 @@
 function pronamic_slider_get_settings( $attrs ) {
 	$slider_settings = [
 		'slidesPerView' => 1,
-		'pagination'    => true,
-		'navigation'    => true,
 		'autoplay'      => false,
+		'loop'          => false,
 		'effect'        => 'slide',
 	];
 
@@ -147,12 +146,8 @@ function pronamic_slider_get_settings( $attrs ) {
 		$slider_settings[ 'slidesPerView' ] = $attrs['slidesPerView'];
 	}
 
-	if ( isset( $attrs['pagination'] ) ) {
-		$slider_settings[ 'pagination' ] = $attrs['pagination'];
-	}
-
-	if ( isset( $attrs['navigation'] ) ) {
-		$slider_settings[ 'navigation' ] = $attrs['navigation'];
+	if ( isset( $attrs['loop'] ) ) {
+		$slider_settings[ 'loop' ] = $attrs['loop'];
 	}
 
 	if ( isset( $attrs['autoplay'] ) ) {

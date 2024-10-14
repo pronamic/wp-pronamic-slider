@@ -17,11 +17,15 @@
 		"slidesPerView" : {
 			"type": "integer",
 			"default": 1
+		},
+		"loop" : {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"textdomain": "pronamic-slider",
     "editorScript": "file:./index.js",
     "editorStyle": "file:./index.css",
-	"viewScript": ["pronamic-query-loop-slider"],
-	"viewStyle": [ "pronamic-query-loop-slider" ]
+	"viewScript": ["pronamic-slider"],
+	"viewStyle": [ "pronamic-slider" ]
 }

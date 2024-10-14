@@ -37,12 +37,6 @@ registerBlockType(
 								max={ 10 }
 							/>
 
-							<ToggleControl
-								label={ __( 'Autoplay', 'pronamic-slider' ) }
-								checked={ attributes.autoplay }
-								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
-							/>
-
 							<SelectControl
 								label={ __( 'Effect', 'pronamic-slider' ) }
 								value={ attributes.effect }
@@ -51,6 +45,18 @@ registerBlockType(
 									{ label: __( 'Fade', 'pronamic-slider' ), value: 'fade' },
 								] }
 								onChange={ ( effect ) => setAttributes( { effect } ) }
+							/>
+
+							<ToggleControl
+								label={ __( 'Autoplay', 'pronamic-slider' ) }
+								checked={ attributes.autoplay }
+								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
+							/>
+
+							<ToggleControl
+								label={ __( 'Loop', 'pronamic-slider' ) }
+								checked={ attributes.loop }
+								onChange={ ( loop ) => setAttributes( { loop } ) }
 							/>
 						</PanelBody>
 					</InspectorControls>

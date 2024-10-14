@@ -11,6 +11,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+/**
+ * Slider styles
+ */
 import './view.scss';
 
 /**
@@ -44,6 +47,7 @@ document.addEventListener(
 						spaceBetween: 24,
 						slidesPerView: 1,
 						autoplay: autoplaySettings,
+						loop: swiperSettingsObject.loop,
 						navigation: {
 							nextEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-next' ),
 							prevEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-prev' ),

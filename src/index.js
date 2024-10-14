@@ -70,6 +70,10 @@ const blockAttributes = ( settings, name ) => {
 			type: 'boolean',
 			default: false
 		},
+		loop: {
+			type: 'boolean',
+			default: false
+		},
 		effect: {
 			type: 'string'
 		}
@@ -114,12 +118,6 @@ export const sliderControls = createHigherOrderComponent(
 								max={ 10 }
 							/>
 
-							<ToggleControl
-								label={ __( 'Autoplay', 'pronamic-slider' ) }
-								checked={ attributes.autoplay }
-								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
-							/>
-
 							<SelectControl
 								label={ __( 'Effect', 'pronamic-slider' ) }
 								value={ attributes.effect }
@@ -128,6 +126,18 @@ export const sliderControls = createHigherOrderComponent(
 									{ label: __( 'Fade', 'pronamic-slider' ), value: 'fade' },
 								] }
 								onChange={ ( effect ) => setAttributes( { effect } ) }
+							/>
+
+							<ToggleControl
+								label={ __( 'Autoplay', 'pronamic-slider' ) }
+								checked={ attributes.autoplay }
+								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
+							/>
+
+							<ToggleControl
+								label={ __( 'Loop', 'pronamic-slider' ) }
+								checked={ attributes.loop }
+								onChange={ ( loop ) => setAttributes( { loop } ) }
 							/>
 						</PanelBody>
 					</InspectorControls>
