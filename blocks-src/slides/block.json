@@ -8,5 +8,5 @@
 	"parent": "pronamic/slider",
 	"icon": "slides",
 	"textdomain": "pronamic-slider",
-    "editorScript": "file:./index.js"
+	"editorScript": "file:./index.js"
 }

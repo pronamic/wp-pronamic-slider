@@ -25,7 +25,10 @@ registerBlockVariation(
 		allowedControls: [ 'postType' ],
 		attributes: {
 			namespace: 'pronamic/slider',
-			className: 'swiper'
+			className: 'swiper',
+			query: {
+				postType: 'post'
+			}
 		},
 		innerBlocks: [
 			[
