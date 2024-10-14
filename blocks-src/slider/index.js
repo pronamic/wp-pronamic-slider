@@ -13,7 +13,11 @@ import './editor.scss';
 registerBlockType(
 	metadata.name, {
 		edit: ( { attributes, setAttributes } ) => {
-			const allowedBlocks = [ 'pronamic/slide' ];
+			const allowedBlocks = [
+				'pronamic/slides',
+				'pronamic/slider-pagination',
+				'pronamic/slider-navigation'
+			];
 
 			const blockProps = useBlockProps(
 				{
@@ -31,18 +35,6 @@ registerBlockType(
 								onChange={ ( slidesPerView ) => setAttributes( { slidesPerView } ) }
 								min={ 1 }
 								max={ 10 }
-							/>
-
-							<ToggleControl
-								label={ __( 'Pagination', 'pronamic-slider' ) }
-								checked={ attributes.pagination }
-								onChange={ ( pagination ) => setAttributes( { pagination } ) }
-							/>
-
-							<ToggleControl
-								label={ __( 'Navigation', 'pronamic-slider' ) }
-								checked={ attributes.navigation }
-								onChange={ ( navigation ) => setAttributes( { navigation } ) }
 							/>
 
 							<ToggleControl
@@ -64,9 +56,7 @@ registerBlockType(
 					</InspectorControls>
 
 					<div { ...blockProps }>
-						<div class="swiper-wrapper">
-							<InnerBlocks allowedBlocks={ allowedBlocks } />
-						</div>
+						<InnerBlocks allowedBlocks={ allowedBlocks } />
 					</div>
 				</div>
 			);
@@ -80,9 +70,7 @@ registerBlockType(
 
 			return (
 				<div { ...blockProps }>
-					<div class="swiper-wrapper">
-						<InnerBlocks.Content />
-					</div>
+					<InnerBlocks.Content />
 				</div>
 			);
 		},

@@ -6,6 +6,17 @@
 	"title": "Pronamic slider navigation",
 	"category": "pronamic",
 	"icon": "leftright",
+	"supports": {
+		"layout": {
+			"default": {
+				"type": "flex"
+			}
+		},
+		"spacing": {
+			"blockGap": true,
+			"margin": true
+		}
+	},
 	"textdomain": "pronamic-slider",
 	"editorScript": "file:./index.js"
 }

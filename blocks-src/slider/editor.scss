@@ -1,12 +1,42 @@
 /**
  * Editor styles for backend
  */
-.wp-block-pronamic-slider {
+.wp-block-pronamic-slider,
+.wp-block-pronamic-slides,
+.wp-block-pronamic-slide {
 	border: 2px dashed #ccd0d4;
 	padding: .5em;
+}
 
-	.swiper-slide {
-		border: 2px dashed #ccd0d4;
-		padding: .5em;
+.wp-block-pronamic-slider-pagination {
+	display: flex;
+	gap: 4px;
+
+	&::before,
+	&::after {
+		background: #ccc;
+		border-radius: 999px;
+		content: '';
+		width: 16px;
+		height: 16px;
 	}
+}
+
+.wp-block-pronamic-slider-navigation {
+	display: flex;
+	gap: 8px;
+}
+
+.wp-block-pronamic-slider-navigation-prev,
+.wp-block-pronamic-slider-navigation-next {
+	align-items: center;
+	background: #ccc;
+	border-radius: 999px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	z-index: 10;
 }

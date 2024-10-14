@@ -1,0 +1,25 @@
+/**
+ * Editor styles for frontend
+ */
+.wp-block-pronamic-slider-navigation-prev,
+.wp-block-pronamic-slider-navigation-next {
+	align-items: center;
+	border-radius: 999px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+}
+
+.wp-block-pronamic-slider-navigation-prev {
+	&::after {
+		content: 'Prev';
+	}
+}
+
+.wp-block-pronamic-slider-navigation-next {
+	&::after {
+		content: 'Next';
+	}
+}

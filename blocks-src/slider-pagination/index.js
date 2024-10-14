@@ -11,16 +11,12 @@ registerBlockType(
 	metadata.name, {
 		edit: () => {
 			return (
-				<div { ...useBlockProps() }>
-					<div class="swiper-pagination"></div>
-				</div>
+				<div { ...useBlockProps() }></div>
 			);
 		},
 		save: () => {
 			return (
-				<div { ...useBlockProps.save() }>
-					<div class="swiper-pagination"></div>
-				</div>
+				<div { ...useBlockProps.save() }></div>
 			);
 		},
 	}

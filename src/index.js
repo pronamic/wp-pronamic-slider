@@ -25,10 +25,7 @@ registerBlockVariation(
 		allowedControls: [ 'postType' ],
 		attributes: {
 			namespace: 'pronamic/slider',
-			className: 'swiper',
-			query: {
-				postType: 'post',
-			}
+			className: 'swiper'
 		},
 		innerBlocks: [
 			[
@@ -36,10 +33,11 @@ registerBlockVariation(
 				{},
 				[
 					[ 'core/post-title' ],
-					[ 'core/post-excerpt' ]
-				],
-				[ 'core/query-no-results' ],
+					[ 'core/post-excerpt' ],
+				]
 			],
+			[ 'pronamic/slider-pagination' ],
+			[ 'pronamic/slider-navigation' ],
 		],
 		scope: [ 'inserter' ]
 	}
@@ -67,14 +65,6 @@ const blockAttributes = ( settings, name ) => {
 		slidesPerView: { 
 			type: 'integer',
 			default: 1
-		},
-		navigation: {
-			type: 'boolean',
-			default: true
-		},
-		pagination: {
-			type: 'boolean',
-			default: true
 		},
 		autoplay: {
 			type: 'boolean',
@@ -122,18 +112,6 @@ export const sliderControls = createHigherOrderComponent(
 								onChange={ ( slidesPerView ) => setAttributes( { slidesPerView } ) }
 								min={ 1 }
 								max={ 10 }
-							/>
-
-							<ToggleControl
-								label={ __( 'Pagination', 'pronamic-slider' ) }
-								checked={ attributes.pagination }
-								onChange={ ( pagination ) => setAttributes( { pagination } ) }
-							/>
-
-							<ToggleControl
-								label={ __( 'Navigation', 'pronamic-slider' ) }
-								checked={ attributes.navigation }
-								onChange={ ( navigation ) => setAttributes( { navigation } ) }
 							/>
 
 							<ToggleControl

@@ -11,14 +11,6 @@
 			"type": "boolean",
 			"default": false
 		},
-		"navigation" : {
-			"type": "boolean",
-			"default": true
-		},
-		"pagination" : {
-			"type": "boolean",
-			"default": true
-		},
 		"effect" : {
 			"type": "string"
 		},

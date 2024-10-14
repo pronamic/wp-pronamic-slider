@@ -2,7 +2,7 @@
  * Swiper Dependencies
  */
 import Swiper from 'swiper';
-import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination, EffectFade, A11y } from 'swiper/modules';
 
 /**
  * Swiper styles
@@ -10,6 +10,8 @@ import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
+import './view.scss';
 
 /**
  * Swiper settings
@@ -34,47 +36,22 @@ document.addEventListener(
 					}
 				}
 
-				// Pagination
-				var paginationSettings = false;
-
-				if ( swiperSettingsObject.pagination ) {
-					const paginationElement = document.createElement( 'div' );
-					paginationElement.classList.add( 'swiper-pagination' );
-					sliderElement.appendChild( paginationElement );
-
-					paginationSettings = {
-						el: paginationElement
-					};
-				}
-
-				// Navigation
-				var navigationSettings = false;
-
-				if ( swiperSettingsObject.navigation ) {
-					const nextButton = document.createElement( 'div' );
-					nextButton.classList.add( 'swiper-button-next' );
-					sliderElement.appendChild( nextButton );
-
-					const prevButton = document.createElement( 'div' );
-					prevButton.classList.add( 'swiper-button-prev' );
-					sliderElement.appendChild( prevButton );
-
-					navigationSettings = {
-						nextEl: nextButton,
-						prevEl: prevButton
-					};
-				}
-
 				// Slider
 				const blockSlider = new Swiper(
 					sliderElement,
 					{
-						modules: [ Navigation, Pagination, Autoplay, EffectFade ],
+						modules: [ Navigation, Pagination, Autoplay, EffectFade, A11y ],
 						spaceBetween: 24,
 						slidesPerView: 1,
 						autoplay: autoplaySettings,
-						navigation: navigationSettings,
-						pagination: paginationSettings,
+						navigation: {
+							nextEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-next' ),
+							prevEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-prev' ),
+						},
+						pagination: {
+							el: sliderElement.querySelector( '.wp-block-pronamic-slider-pagination' ),
+							clickable: true
+						},
 						breakpoints: {
 							782: {
 								slidesPerView: swiperSettingsObject.slidesPerView,
