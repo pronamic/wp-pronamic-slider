@@ -9,9 +9,15 @@ import metadata from './block.json';
 
 registerBlockType(
 	metadata.name, {
-		edit: () => {
+		edit: ( attributes ) => {
+			const blockProps = useBlockProps(
+				{
+					className: attributes.__unstableLayoutClassNames,
+				}
+			);
+
 			return (
-				<div { ...useBlockProps() }>
+				<div { ...blockProps }>
 					<div class="wp-block-pronamic-slider-navigation-prev"></div>
 					<div class="wp-block-pronamic-slider-navigation-next"></div>
 				</div>

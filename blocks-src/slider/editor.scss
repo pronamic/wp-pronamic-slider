@@ -30,13 +30,38 @@
 .wp-block-pronamic-slider-navigation-prev,
 .wp-block-pronamic-slider-navigation-next {
 	align-items: center;
-	background: #ccc;
 	border-radius: 999px;
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
+	transition: opacity .2s;
 	width: 40px;
 	height: 40px;
-	position: relative;
-	z-index: 10;
+
+	&::after {
+		background-color: rgba(0, 0, 0, 1);
+		content: '';
+		mask-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z"/></svg>');
+		mask-size: cover;
+		width: 24px;
+		height: 24px;
+	}
+
+	&.swiper-button-disabled {
+		cursor: auto;
+		opacity: .24;
+		pointer-events: none;
+	}
+}
+
+.wp-block-pronamic-slider-navigation-prev {
+	&::after {
+		mask-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z"/></svg>');
+	}
+}
+
+.wp-block-pronamic-slider-navigation-next {
+	&::after {
+		mask-image: url('data:image/svg+xml,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.025 22L6.25 20.225L14.475 12L6.25 3.775L8.025 2L18.025 12L8.025 22Z"/></svg>');
+	}
 }
