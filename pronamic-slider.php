@@ -87,15 +87,36 @@
 
 		$processor = new \WP_HTML_Tag_Processor( $block_content );
 
-		if ( $processor->next_tag( 'div' ) ) {
+		if (
+			$processor->next_tag( 
+				[ 
+					'tag_name'   => 'div',
+					'class_name' => 'wp-block-query'
+				]
+			)
+		) {
 			$processor->set_attribute( 'data-swiper-settings', wp_json_encode( $slider_settings ) );
 		}
 
-		if ( $processor->next_tag( 'ul' ) ) {
+		if (
+			$processor->next_tag(
+				[
+					'tag_name'   => 'ul',
+					'class_name' => 'wp-block-post-template'
+				]
+			)
+		) {
 			$processor->add_class( 'swiper-wrapper' );
 		}
 
-		while ( $processor->next_tag( 'li' ) ) {
+		while (
+			$processor->next_tag(
+				[
+					'tag_name'   => 'li',
+					'class_name' => 'wp-block-post'
+				]
+			)
+		) {
 			$processor->add_class( 'swiper-slide' );
 		}
 
