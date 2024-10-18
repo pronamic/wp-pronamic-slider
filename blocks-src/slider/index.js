@@ -16,7 +16,9 @@ registerBlockType(
 			const allowedBlocks = [
 				'pronamic/slides',
 				'pronamic/slider-pagination',
-				'pronamic/slider-navigation'
+				'pronamic/slider-navigation',
+				'core/heading',
+				'core/columns'
 			];
 
 			const blockProps = useBlockProps(
