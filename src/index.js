@@ -22,7 +22,6 @@ registerBlockVariation(
 		description: 'Displays a query loop slider.',
 		isActive: [ 'namespace' ],
 		icon: 'slides',
-		allowedControls: [ 'postType' ],
 		attributes: {
 			namespace: 'pronamic/slider',
 			className: 'swiper',
