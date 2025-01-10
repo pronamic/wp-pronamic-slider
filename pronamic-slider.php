@@ -17,21 +17,26 @@
 \add_action(
 	'wp_enqueue_scripts',
 	function() {
-		$script_asset = require __DIR__ . '/build/index.asset.php';
+		$script_asset = require __DIR__ . '/build/view.asset.php';
 
-		wp_enqueue_style(
+		\wp_register_style(
 			'pronamic-slider',
 			plugins_url( 'build/view.css', __FILE__ ),
 			[],
 			$script_asset['version']
 		);
 	
-		\wp_enqueue_script(
+		\wp_register_script(
 			'pronamic-slider',
 			plugins_url( 'build/view.js', __FILE__ ),
 			$script_asset['dependencies'],
 			$script_asset['version']
 		);
+
+		if ( has_block('core/query' ) ) {
+			wp_enqueue_style( 'pronamic-slider' );
+			wp_enqueue_script( 'pronamic-slider' );
+		}
 	}
 );
 
