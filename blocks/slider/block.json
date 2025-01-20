@@ -21,6 +21,10 @@
     "loop": {
       "type": "boolean",
       "default": false
+    },
+    "spaceBetween": {
+      "type": "string",
+      "default": 24
     }
   },
   "textdomain": "pronamic-slider",

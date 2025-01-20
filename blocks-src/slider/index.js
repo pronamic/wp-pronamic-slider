@@ -60,6 +60,12 @@ registerBlockType(
 								checked={ attributes.loop }
 								onChange={ ( loop ) => setAttributes( { loop } ) }
 							/>
+	
+							<TextControl
+								label={ __( 'Space between', 'pronamic-toc' ) }
+								value={ attributes.spaceBetween }
+								onChange={ ( spaceBetween ) => setAttributes( { spaceBetween } ) }
+							/>
 						</PanelBody>
 					</InspectorControls>
 

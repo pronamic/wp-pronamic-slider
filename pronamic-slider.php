@@ -166,22 +166,27 @@ function pronamic_slider_get_settings( $attrs ) {
 		'autoplay'      => false,
 		'loop'          => false,
 		'effect'        => 'slide',
+		'spaceBetween'  => 24,
 	];
 
 	if ( isset( $attrs['slidesPerView'] ) ) {
-		$slider_settings[ 'slidesPerView' ] = $attrs['slidesPerView'];
+		$slider_settings['slidesPerView'] = $attrs['slidesPerView'];
 	}
 
 	if ( isset( $attrs['loop'] ) ) {
-		$slider_settings[ 'loop' ] = $attrs['loop'];
+		$slider_settings['loop'] = $attrs['loop'];
 	}
 
 	if ( isset( $attrs['autoplay'] ) ) {
-		$slider_settings[ 'autoplay' ] = $attrs['autoplay'];
+		$slider_settings['autoplay'] = $attrs['autoplay'];
 	}
 
 	if ( isset( $attrs['effect'] ) ) {
-		$slider_settings[ 'effect' ] = $attrs['effect'];
+		$slider_settings['effect'] = $attrs['effect'];
+	}
+
+	if ( isset( $attrs['spaceBetween'] ) ) {
+		$slider_settings['spaceBetween'] = $attrs['spaceBetween'];
 	}
 
 	return $slider_settings;

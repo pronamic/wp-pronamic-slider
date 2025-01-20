@@ -7,20 +7,24 @@
 	"category": "pronamic",
 	"icon": "slides",
 	"attributes": {
-		"autoplay" : {
+		"autoplay": {
 			"type": "boolean",
 			"default": false
 		},
-		"effect" : {
+		"effect": {
 			"type": "string"
 		},
-		"slidesPerView" : {
+		"slidesPerView": {
 			"type": "integer",
 			"default": 1
 		},
-		"loop" : {
+		"loop": {
 			"type": "boolean",
 			"default": false
+		},
+		"spaceBetween": {
+			"type": "string",
+			"default": 24
 		}
 	},
 	"textdomain": "pronamic-slider",

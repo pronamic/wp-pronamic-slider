@@ -44,7 +44,7 @@ document.addEventListener(
 					sliderElement,
 					{
 						modules: [ Navigation, Pagination, Autoplay, EffectFade, A11y ],
-						spaceBetween: 24,
+						spaceBetween: swiperSettingsObject.spaceBetween,
 						slidesPerView: 1,
 						autoplay: autoplaySettings,
 						loop: swiperSettingsObject.loop,
