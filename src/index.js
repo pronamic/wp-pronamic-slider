@@ -24,7 +24,6 @@ registerBlockVariation(
 		icon: 'slides',
 		attributes: {
 			namespace: 'pronamic/slider',
-			className: 'swiper',
 			query: {
 				postType: 'post'
 			}
@@ -71,6 +70,10 @@ const blockAttributes = ( settings, name ) => {
 		autoplay: {
 			type: 'boolean',
 			default: false
+		},
+		autoplayDelay: {
+			type: 'string',
+			default: 2000
 		},
 		loop: {
 			type: 'boolean',

@@ -11,6 +11,10 @@
       "type": "boolean",
       "default": false
     },
+    "autoplayDelay": {
+      "type": "string",
+      "default": 2000
+    },
     "effect": {
       "type": "string"
     },
@@ -25,6 +29,10 @@
     "spaceBetween": {
       "type": "string",
       "default": 24
+    },
+    "mobileSlidesPerView": {
+      "type": "integer",
+      "default": 1
     }
   },
   "textdomain": "pronamic-slider",

@@ -34,7 +34,7 @@ document.addEventListener(
 
 				if ( swiperSettingsObject.autoplay ) {
 					autoplaySettings = {
-						delay: 2000,
+						delay: swiperSettingsObject.autoplayDelay,
 						disableOnInteraction: true,
 					}
 				}
@@ -45,7 +45,7 @@ document.addEventListener(
 					{
 						modules: [ Navigation, Pagination, Autoplay, EffectFade, A11y ],
 						spaceBetween: swiperSettingsObject.spaceBetween,
-						slidesPerView: 1,
+						slidesPerView: swiperSettingsObject.mobileSlidesPerView,
 						autoplay: autoplaySettings,
 						loop: swiperSettingsObject.loop,
 						navigation: {

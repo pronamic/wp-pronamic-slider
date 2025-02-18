@@ -100,6 +100,7 @@
 				]
 			)
 		) {
+			$processor->add_class( 'swiper' );
 			$processor->set_attribute( 'data-swiper-settings', wp_json_encode( $slider_settings ) );
 		}
 
@@ -146,6 +147,7 @@
 		$processor = new \WP_HTML_Tag_Processor( $block_content );
 
 		if ( $processor->next_tag( 'div' ) ) {
+			$processor->add_class( 'swiper' );
 			$processor->set_attribute( 'data-swiper-settings', wp_json_encode( $slider_settings ) );
 		}
 
@@ -162,11 +164,13 @@
  */
 function pronamic_slider_get_settings( $attrs ) {
 	$slider_settings = [
-		'slidesPerView' => 1,
-		'autoplay'      => false,
-		'loop'          => false,
-		'effect'        => 'slide',
-		'spaceBetween'  => 24,
+		'slidesPerView'       => 1,
+		'autoplay'            => false,
+		'autoplayDelay'       => 2000,
+		'loop'                => false,
+		'effect'              => 'slide',
+		'spaceBetween'        => 24,
+		'mobileSlidesPerView' => 1,
 	];
 
 	if ( isset( $attrs['slidesPerView'] ) ) {
@@ -181,12 +185,20 @@ function pronamic_slider_get_settings( $attrs ) {
 		$slider_settings['autoplay'] = $attrs['autoplay'];
 	}
 
+	if ( isset( $attrs['autoplayDelay'] ) ) {
+		$slider_settings['autoplayDelay'] = $attrs['autoplayDelay'];
+	}
+
 	if ( isset( $attrs['effect'] ) ) {
 		$slider_settings['effect'] = $attrs['effect'];
 	}
 
 	if ( isset( $attrs['spaceBetween'] ) ) {
 		$slider_settings['spaceBetween'] = $attrs['spaceBetween'];
+	}
+
+	if ( isset( $attrs['mobileSlidesPerView'] ) ) {
+		$slider_settings['mobileSlidesPerView'] = $attrs['mobileSlidesPerView'];
 	}
 
 	return $slider_settings;

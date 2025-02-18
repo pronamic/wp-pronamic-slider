@@ -21,11 +21,7 @@ registerBlockType(
 				'core/columns'
 			];
 
-			const blockProps = useBlockProps(
-				{
-					className: 'swiper'
-				}
-			);
+			const blockProps = useBlockProps();
 
 			return (
 				<div>
@@ -55,6 +51,12 @@ registerBlockType(
 								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
 							/>
 
+							<TextControl
+								label={ __( 'Autoplay delay', 'pronamic-slider' ) }
+								value={ attributes.autoplayDelay }
+								onChange={ ( autoplayDelay ) => setAttributes( { autoplayDelay } ) }
+							/>
+
 							<ToggleControl
 								label={ __( 'Loop', 'pronamic-slider' ) }
 								checked={ attributes.loop }
@@ -62,9 +64,19 @@ registerBlockType(
 							/>
 	
 							<TextControl
-								label={ __( 'Space between', 'pronamic-toc' ) }
+								label={ __( 'Space between', 'pronamic-slider' ) }
 								value={ attributes.spaceBetween }
 								onChange={ ( spaceBetween ) => setAttributes( { spaceBetween } ) }
+							/>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Mobile Settings','pronamic-slider' ) } initialOpen={ false }>
+							<RangeControl
+								label={ __( 'Slides per view', 'pronamic-slider' ) }
+								value={ attributes.mobileSlidesPerView }
+								onChange={ ( mobileSlidesPerView ) => setAttributes( { mobileSlidesPerView } ) }
+								min={ 1 }
+								max={ 10 }
 							/>
 						</PanelBody>
 					</InspectorControls>
@@ -76,11 +88,7 @@ registerBlockType(
 			);
 		},
 		save: ( { attributes } ) => {
-			const blockProps = useBlockProps.save(
-				{
-					className: 'swiper'
-				}
-			);
+			const blockProps = useBlockProps.save();
 
 			return (
 				<div { ...blockProps }>
