@@ -133,6 +133,42 @@
 );
 
 /**
+ * Add slider pagination settings.
+ */
+\add_filter(
+	'render_block',
+	function( $block_content, $block ) {
+		if ( 'pronamic/slider-pagination' !== $block['blockName'] ) {
+			return $block_content;
+		}
+
+		if ( ! isset( $block['attrs']['paginationType'] ) ) {
+			return;
+		}
+
+		$processor = new \WP_HTML_Tag_Processor( $block_content );
+
+		if (
+			$processor->next_tag( 
+				[ 
+					'tag_name'   => 'div',
+					'class_name' => 'wp-block-pronamic-slider-pagination'
+				]
+			)
+		) {
+			$processor->set_attribute(
+				'data-swiper-pagination-settings',
+				wp_json_encode( [ 'paginationType' => $block['attrs']['paginationType'] ] )
+			);
+		}
+
+		return $processor->get_updated_html();
+	},
+	20,
+	2
+);
+
+/**
  * Add slider settings to Pronamic Slider block.
  */
 \add_filter(

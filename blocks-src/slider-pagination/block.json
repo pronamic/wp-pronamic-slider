@@ -6,6 +6,11 @@
 	"title": "Pronamic slider pagination",
 	"category": "pronamic",
 	"icon": "ellipsis",
+	"attributes": {
+		"paginationType": {
+			"type": "string"
+		}
+	},
 	"textdomain": "pronamic-slider",
 	"editorScript": "file:./index.js"
 }

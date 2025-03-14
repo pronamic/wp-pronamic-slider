@@ -29,6 +29,24 @@ document.addEventListener(
 
 				const swiperSettingsObject = JSON.parse( swiperSettings );
 
+				// Pagination
+				const paginationSettings = {};
+
+				const paginationElement = sliderElement.querySelector( '[data-swiper-pagination-settings]' );
+
+				if ( paginationElement ) {
+					paginationSettings.el        = paginationElement;
+					paginationSettings.clickable = true;
+
+					const paginationSettingsAttribute = paginationElement.getAttribute( 'data-swiper-pagination-settings' );
+
+					if ( paginationSettingsAttribute ) {
+						const paginationSettingsObject = JSON.parse( paginationSettingsAttribute );
+
+						paginationSettings.type = paginationSettingsObject.paginationType;
+					}
+				}
+
 				// Autoplay
 				var autoplaySettings = false;
 
@@ -52,10 +70,7 @@ document.addEventListener(
 							nextEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-next' ),
 							prevEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-prev' ),
 						},
-						pagination: {
-							el: sliderElement.querySelector( '.wp-block-pronamic-slider-pagination' ),
-							clickable: true
-						},
+						pagination: paginationSettings,
 						breakpoints: {
 							782: {
 								slidesPerView: swiperSettingsObject.slidesPerView,
