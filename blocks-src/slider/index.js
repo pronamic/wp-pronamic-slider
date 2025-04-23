@@ -51,6 +51,12 @@ registerBlockType(
 								onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
 							/>
 
+							<ToggleControl
+								label={ __( 'Centered Slides', 'pronamic-slider' ) }
+								checked={ attributes.centeredSlides }
+								onChange={ ( centeredSlides ) => setAttributes( { centeredSlides } ) }
+							/>
+
 							<TextControl
 								label={ __( 'Autoplay delay', 'pronamic-slider' ) }
 								value={ attributes.autoplayDelay }

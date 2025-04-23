@@ -15,6 +15,10 @@
       "type": "string",
       "default": 2000
     },
+    "centeredSlides": {
+      "type": "boolean",
+      "default": false
+    },
     "effect": {
       "type": "string"
     },

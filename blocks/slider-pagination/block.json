@@ -11,6 +11,17 @@
       "type": "string"
     }
   },
+  "supports": {
+    "layout": {
+      "default": {
+        "type": "flex"
+      }
+    },
+    "spacing": {
+      "blockGap": true,
+      "margin": true
+    }
+  },
   "textdomain": "pronamic-slider",
   "editorScript": "file:./index.js"
 }

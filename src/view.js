@@ -65,6 +65,7 @@ document.addEventListener(
 						spaceBetween: swiperSettingsObject.spaceBetween,
 						slidesPerView: swiperSettingsObject.mobileSlidesPerView,
 						autoplay: autoplaySettings,
+						centeredSlides: swiperSettingsObject.centeredSlides,
 						loop: swiperSettingsObject.loop,
 						navigation: {
 							nextEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-next' ),

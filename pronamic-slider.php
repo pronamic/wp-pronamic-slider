@@ -203,6 +203,7 @@ function pronamic_slider_get_settings( $attrs ) {
 		'slidesPerView'       => 1,
 		'autoplay'            => false,
 		'autoplayDelay'       => 2000,
+		'centeredSlides'      => false,
 		'loop'                => false,
 		'effect'              => 'slide',
 		'spaceBetween'        => 24,
@@ -223,6 +224,10 @@ function pronamic_slider_get_settings( $attrs ) {
 
 	if ( isset( $attrs['autoplayDelay'] ) ) {
 		$slider_settings['autoplayDelay'] = $attrs['autoplayDelay'];
+	}
+
+	if ( isset( $attrs['centeredSlides'] ) ) {
+		$slider_settings['centeredSlides'] = $attrs['centeredSlides'];
 	}
 
 	if ( isset( $attrs['effect'] ) ) {
