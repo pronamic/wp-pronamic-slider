@@ -67,6 +67,7 @@ document.addEventListener(
 						autoplay: autoplaySettings,
 						centeredSlides: swiperSettingsObject.centeredSlides,
 						loop: swiperSettingsObject.loop,
+						effect: swiperSettingsObject.effect,
 						navigation: {
 							nextEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-next' ),
 							prevEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-prev' ),
