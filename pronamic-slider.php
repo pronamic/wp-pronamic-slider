@@ -19,21 +19,37 @@
 	function() {
 		$script_asset = require __DIR__ . '/build/view.asset.php';
 
+		// Swiper
+		\wp_register_script(
+			'swiper',
+			plugins_url( 'node_modules/swiper/swiper-bundle.min.js', __FILE__ ),
+			[],
+			'11.2.10'
+		);
+
+		\wp_register_style(
+			'swiper',
+			\plugins_url( 'node_modules/swiper/swiper-bundle.min.css', __FILE__ ),
+			[],
+			'11.2.10'
+		);
+
+		// Pronamic Slider
 		\wp_register_style(
 			'pronamic-slider',
 			plugins_url( 'build/view.css', __FILE__ ),
-			[],
+			[ 'swiper' ],
 			$script_asset['version']
 		);
 	
 		\wp_register_script(
 			'pronamic-slider',
 			plugins_url( 'build/view.js', __FILE__ ),
-			$script_asset['dependencies'],
+			array_merge( $script_asset['dependencies'], ['swiper'] ),
 			$script_asset['version']
 		);
 
-		if ( has_block('core/query' ) ) {
+		if ( has_block( 'core/query' ) ) {
 			wp_enqueue_style( 'pronamic-slider' );
 			wp_enqueue_script( 'pronamic-slider' );
 		}

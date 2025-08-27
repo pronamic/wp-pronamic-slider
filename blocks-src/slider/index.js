@@ -88,7 +88,14 @@ registerBlockType(
 					</InspectorControls>
 
 					<div { ...blockProps }>
-						<InnerBlocks allowedBlocks={ allowedBlocks } />
+						<InnerBlocks
+							allowedBlocks={ allowedBlocks }
+							template={
+								[
+									[ 'pronamic/slides', {} ]
+								]
+							}
+						/>
 					</div>
 				</div>
 			);
