@@ -21,5 +21,8 @@ Pronamic block with slider integration.
 
 == Changelog ==
 
+= 1.0.1 =
+* Added support for rendering navigation controls in a parent container outside of the slider element.
+
 = 1.0.0 =
 * Release

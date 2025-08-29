@@ -45,6 +45,8 @@ document.addEventListener(
 				}
 
 				// Slider
+				const { nextBtn, prevBtn } = getSliderNavigation( sliderElement );
+
 				const blockSlider = new Swiper(
 					sliderElement,
 					{
@@ -55,8 +57,8 @@ document.addEventListener(
 						loop: swiperSettingsObject.loop,
 						effect: swiperSettingsObject.effect,
 						navigation: {
-							nextEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-next' ),
-							prevEl: sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-prev' ),
+							nextEl: nextBtn,
+							prevEl: prevBtn,
 						},
 						pagination: paginationSettings,
 						breakpoints: {
@@ -70,3 +72,24 @@ document.addEventListener(
 		);
 	}
 );
+
+/**
+ * Find the correct navigation buttons for a given slider element.
+ *
+ * @param {HTMLElement} sliderElement - The Swiper slider container element.
+ */
+function getSliderNavigation( sliderElement ) {
+	let nextBtn = sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-next' );
+	let prevBtn = sliderElement.querySelector( '.wp-block-pronamic-slider-navigation-prev' );
+
+	if ( ! nextBtn || ! prevBtn ) {
+		const parent = sliderElement.parentElement;
+
+		if ( parent ) {
+			nextBtn = parent.querySelector( '.wp-block-pronamic-slider-navigation-next' );
+			prevBtn = parent.querySelector( '.wp-block-pronamic-slider-navigation-prev' );
+		}
+	}
+
+	return { nextBtn, prevBtn };
+}
