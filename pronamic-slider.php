@@ -22,14 +22,14 @@
 		// Swiper
 		\wp_register_script(
 			'swiper',
-			plugins_url( 'node_modules/swiper/swiper-bundle.min.js', __FILE__ ),
+			plugins_url( 'assets/swiper/swiper-bundle.min.js', __FILE__ ),
 			[],
 			'11.2.10'
 		);
 
 		\wp_register_style(
 			'swiper',
-			\plugins_url( 'node_modules/swiper/swiper-bundle.min.css', __FILE__ ),
+			\plugins_url( 'assets/swiper/swiper-bundle.min.css', __FILE__ ),
 			[],
 			'11.2.10'
 		);
