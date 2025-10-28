@@ -18,16 +18,16 @@ registerBlockType(
 
 			return (
 				<div { ...blockProps }>
-					<div class="wp-block-pronamic-slider-navigation-prev"></div>
-					<div class="wp-block-pronamic-slider-navigation-next"></div>
+					<div className="wp-block-pronamic-slider-navigation-prev"></div>
+					<div className="wp-block-pronamic-slider-navigation-next"></div>
 				</div>
 			);
 		},
 		save: () => {
 			return (
 				<div { ...useBlockProps.save() }>
-					<div class="wp-block-pronamic-slider-navigation-prev"></div>
-					<div class="wp-block-pronamic-slider-navigation-next"></div>
+					<div className="wp-block-pronamic-slider-navigation-prev"></div>
+					<div className="wp-block-pronamic-slider-navigation-next"></div>
 				</div>
 			);
 		},
