@@ -48,11 +48,6 @@
 			array_merge( $script_asset['dependencies'], ['swiper'] ),
 			$script_asset['version']
 		);
-
-		if ( has_block( 'core/query' ) ) {
-			wp_enqueue_style( 'pronamic-slider' );
-			wp_enqueue_script( 'pronamic-slider' );
-		}
 	}
 );
 
@@ -91,6 +86,9 @@
 );
 
 /**
+ * Render block
+ * 
+ * Enqueu Swiper assets.
  * Add slider settings to Pronamic Slider Query block and add slider wrapper.
  */
 \add_filter(
@@ -103,6 +101,9 @@
 		if ( 'pronamic/slider' !== $block['attrs']['namespace'] ) {
 			return $block_content;
 		}
+
+		wp_enqueue_style( 'pronamic-slider' );
+		wp_enqueue_script( 'pronamic-slider' );
 
 		$slider_settings = pronamic_slider_get_settings( $block['attrs'] );
 
