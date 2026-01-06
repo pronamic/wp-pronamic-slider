@@ -14,9 +14,9 @@ registerBlockType(
 			return (
 				<div>
 					<InspectorControls>
-						<PanelBody title={ __( 'Settings','pronamic-slider' ) } initialOpen={ true }>
+						<PanelBody title={ __( 'Settings', 'pronamic-slider' ) } initialOpen={ true }>
 							<SelectControl
-								label={ __( 'type', 'pronamic-slider' ) }
+								label={ __( 'Type', 'pronamic-slider' ) }
 								value={ attributes.paginationType }
 								options={ [
 									{ label: __( 'Bullets', 'pronamic-slider' ), value: 'bullets' },

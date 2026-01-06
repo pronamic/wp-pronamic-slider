@@ -39,14 +39,14 @@
 			'pronamic-slider',
 			plugins_url( 'build/view.css', __FILE__ ),
 			[ 'swiper' ],
-			$script_asset['version']
+			$script_asset[ 'version' ]
 		);
 	
 		\wp_register_script(
 			'pronamic-slider',
 			plugins_url( 'build/view.js', __FILE__ ),
-			array_merge( $script_asset['dependencies'], ['swiper'] ),
-			$script_asset['version']
+			array_merge( $script_asset[ 'dependencies' ], [ 'swiper' ] ),
+			$script_asset[ 'version' ]
 		);
 	}
 );
@@ -61,10 +61,24 @@
 
 		\wp_enqueue_script(
 			'pronamic-slider',
-			plugins_url( 'build/index.js', __FILE__ ),
+			\plugins_url( 'build/index.js', __FILE__ ),
 			$script_asset['dependencies'],
 			$script_asset['version']
 		);
+
+		$blocks = [
+			'pronamic-slider',
+			'pronamic-slider-pagination',
+			'pronamic-slider-navigation',
+		];
+
+		foreach ( $blocks as $block ) {
+			\wp_set_script_translations(
+				$block . '-editor-script',
+				'pronamic-slider',
+				\plugin_dir_path( __FILE__ ) . 'languages'
+			);
+		}
 	}
 );
 
