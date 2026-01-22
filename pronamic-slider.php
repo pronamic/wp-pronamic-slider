@@ -4,6 +4,7 @@
  * Description:     Pronamic block with slider integration.
  * Version:         1.0.0
  * Author:          Pronamic
+ * Author URI:      https://www.pronamic.eu/
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:     pronamic-slider
