@@ -1,10 +1,9 @@
-
 /**
  * WordPress Dependencies
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { registerBlockVariation } from '@wordpress/blocks';
-import { ToggleControl, RangeControl, PanelBody, SelectControl } from '@wordpress/components';
+import { ToggleControl, TextControl, RangeControl, PanelBody, SelectControl } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
@@ -81,6 +80,10 @@ const blockAttributes = ( settings, name ) => {
 		},
 		effect: {
 			type: 'string'
+		},
+		spaceBetween: {
+			type: 'string',
+			default: 24
 		}
 	};
 
@@ -143,6 +146,12 @@ export const sliderControls = createHigherOrderComponent(
 								label={ __( 'Loop', 'pronamic-slider' ) }
 								checked={ attributes.loop }
 								onChange={ ( loop ) => setAttributes( { loop } ) }
+							/>
+
+							<TextControl
+								label={ __( 'Space between', 'pronamic-slider' ) }
+								value={ attributes.spaceBetween }
+								onChange={ ( spaceBetween ) => setAttributes( { spaceBetween } ) }
 							/>
 						</PanelBody>
 					</InspectorControls>
