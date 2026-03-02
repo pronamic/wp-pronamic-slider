@@ -84,6 +84,10 @@ const blockAttributes = ( settings, name ) => {
 		spaceBetween: {
 			type: 'string',
 			default: 24
+		},
+		mobileSlidesPerView: { 
+			type: 'integer',
+			default: 1
 		}
 	};
 
@@ -152,6 +156,16 @@ export const sliderControls = createHigherOrderComponent(
 								label={ __( 'Space between', 'pronamic-slider' ) }
 								value={ attributes.spaceBetween }
 								onChange={ ( spaceBetween ) => setAttributes( { spaceBetween } ) }
+							/>
+						</PanelBody>
+
+						<PanelBody title={ __( 'Mobile Settings', 'pronamic-slider' ) } initialOpen={ false }>
+							<RangeControl
+								label={ __( 'Slides per view', 'pronamic-slider' ) }
+								value={ attributes.mobileSlidesPerView }
+								onChange={ ( mobileSlidesPerView ) => setAttributes( { mobileSlidesPerView } ) }
+								min={ 1 }
+								max={ 10 }
 							/>
 						</PanelBody>
 					</InspectorControls>

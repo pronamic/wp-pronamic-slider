@@ -76,7 +76,7 @@ registerBlockType(
 							/>
 						</PanelBody>
 
-						<PanelBody title={ __( 'Mobile Settings','pronamic-slider' ) } initialOpen={ false }>
+						<PanelBody title={ __( 'Mobile Settings', 'pronamic-slider' ) } initialOpen={ false }>
 							<RangeControl
 								label={ __( 'Slides per view', 'pronamic-slider' ) }
 								value={ attributes.mobileSlidesPerView }
