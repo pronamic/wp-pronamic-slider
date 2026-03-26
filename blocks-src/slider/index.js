@@ -13,14 +13,6 @@ import './editor.scss';
 registerBlockType(
 	metadata.name, {
 		edit: ( { attributes, setAttributes } ) => {
-			const allowedBlocks = [
-				'pronamic/slides',
-				'pronamic/slider-pagination',
-				'pronamic/slider-navigation',
-				'core/heading',
-				'core/columns'
-			];
-
 			const blockProps = useBlockProps();
 
 			return (
@@ -89,7 +81,6 @@ registerBlockType(
 
 					<div { ...blockProps }>
 						<InnerBlocks
-							allowedBlocks={ allowedBlocks }
 							template={
 								[
 									[ 'pronamic/slides', {} ]
