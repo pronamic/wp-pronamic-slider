@@ -76,6 +76,12 @@ registerBlockType(
 								min={ 1 }
 								max={ 10 }
 							/>
+	
+							<TextControl
+								label={ __( 'Space between', 'pronamic-slider' ) }
+								value={ attributes.mobileSpaceBetween }
+								onChange={ ( mobileSpaceBetween ) => setAttributes( { mobileSpaceBetween } ) }
+							/>
 						</PanelBody>
 					</InspectorControls>
 

@@ -37,6 +37,10 @@
 		"mobileSlidesPerView": {
 			"type": "integer",
 			"default": 1
+		},
+		"mobileSpaceBetween": {
+			"type": "string",
+			"default": 24
 		}
 	},
 	"textdomain": "pronamic-slider",

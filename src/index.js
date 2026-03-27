@@ -88,7 +88,11 @@ const blockAttributes = ( settings, name ) => {
 		mobileSlidesPerView: { 
 			type: 'integer',
 			default: 1
-		}
+		},
+		mmobileSpaceBetween: {
+			type: 'string',
+			default: 24
+		},
 	};
 
 	return settings;
@@ -166,6 +170,12 @@ export const sliderControls = createHigherOrderComponent(
 								onChange={ ( mobileSlidesPerView ) => setAttributes( { mobileSlidesPerView } ) }
 								min={ 1 }
 								max={ 10 }
+							/>
+
+							<TextControl
+								label={ __( 'Space between', 'pronamic-slider' ) }
+								value={ attributes.mobileSpaceBetween }
+								onChange={ ( mobileSpaceBetween ) => setAttributes( { mobileSpaceBetween } ) }
 							/>
 						</PanelBody>
 					</InspectorControls>

@@ -240,6 +240,7 @@ function pronamic_slider_get_settings( $attrs ) {
 		'effect'              => 'slide',
 		'spaceBetween'        => 24,
 		'mobileSlidesPerView' => 1,
+		'mobileSpaceBetween'  => 24,
 	];
 
 	if ( isset( $attrs['slidesPerView'] ) ) {
@@ -272,6 +273,10 @@ function pronamic_slider_get_settings( $attrs ) {
 
 	if ( isset( $attrs['mobileSlidesPerView'] ) ) {
 		$slider_settings['mobileSlidesPerView'] = $attrs['mobileSlidesPerView'];
+	}
+
+	if ( isset( $attrs['mobileSpaceBetween'] ) ) {
+		$slider_settings['mobileSpaceBetween'] = $attrs['mobileSpaceBetween'];
 	}
 
 	return $slider_settings;

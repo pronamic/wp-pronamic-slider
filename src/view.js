@@ -50,7 +50,7 @@ document.addEventListener(
 				const blockSlider = new Swiper(
 					sliderElement,
 					{
-						spaceBetween: swiperSettingsObject.spaceBetween,
+						spaceBetween: swiperSettingsObject.mobileSpaceBetween,
 						slidesPerView: swiperSettingsObject.mobileSlidesPerView,
 						autoplay: autoplaySettings,
 						centeredSlides: swiperSettingsObject.centeredSlides,
@@ -64,6 +64,7 @@ document.addEventListener(
 						breakpoints: {
 							782: {
 								slidesPerView: swiperSettingsObject.slidesPerView,
+								spaceBetween: swiperSettingsObject.spaceBetween,
 							}
 						}
 					}
