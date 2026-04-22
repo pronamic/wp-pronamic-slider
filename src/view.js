@@ -44,6 +44,16 @@ document.addEventListener(
 					}
 				}
 
+				// Scrollbar
+				const scrollbarSettings = {};
+
+				const scrollbarElement = sliderElement.querySelector( '[data-swiper-scrollbar]' );
+
+				if ( scrollbarElement ) {
+					scrollbarSettings.el = scrollbarElement;
+					scrollbarSettings.draggable = true;
+				}
+
 				// Slider
 				const { nextBtn, prevBtn } = getSliderNavigation( sliderElement );
 
@@ -64,6 +74,7 @@ document.addEventListener(
 							prevEl: prevBtn,
 						},
 						pagination: paginationSettings,
+						scrollbar: scrollbarSettings,
 						breakpoints: {
 							782: {
 								slidesPerView: slidesPerView,

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pronamic/slider-scrollbar",
+  "version": "1.0.0",
+  "title": "Pronamic slider scrollbar",
+  "category": "pronamic",
+  "icon": "minus",
+  "supports": {
+    "spacing": {
+      "margin": true
+    }
+  },
+  "textdomain": "pronamic-slider",
+  "editorScript": "file:./index.js"
+}

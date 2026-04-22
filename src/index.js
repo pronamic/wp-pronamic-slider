@@ -38,6 +38,7 @@ registerBlockVariation(
 			],
 			[ 'pronamic/slider-pagination' ],
 			[ 'pronamic/slider-navigation' ],
+			[ 'pronamic/slider-scrollbar' ],
 		],
 		scope: [ 'inserter' ]
 	}

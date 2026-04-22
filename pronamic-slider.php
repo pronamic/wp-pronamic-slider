@@ -97,6 +97,7 @@
 		// Swiper query block
 		\register_block_type( __DIR__ . '/blocks/slider-navigation' );
 		\register_block_type( __DIR__ . '/blocks/slider-pagination' );
+		\register_block_type( __DIR__ . '/blocks/slider-scrollbar' );
 	}
 );
 
@@ -192,6 +193,35 @@
 				'data-swiper-pagination-settings',
 				wp_json_encode( [ 'paginationType' => $block['attrs']['paginationType'] ] )
 			);
+		}
+
+		return $processor->get_updated_html();
+	},
+	20,
+	2
+);
+
+/**
+ * Add slider scrollbar class.
+ */
+\add_filter(
+	'render_block',
+	function( $block_content, $block ) {
+		if ( 'pronamic/slider-scrollbar' !== $block['blockName'] ) {
+			return $block_content;
+		}
+
+		$processor = new \WP_HTML_Tag_Processor( $block_content );
+
+		if (
+			$processor->next_tag( 
+				[ 
+					'tag_name'   => 'div',
+					'class_name' => 'wp-block-pronamic-slider-scrollbar'
+				]
+			)
+		) {
+			$processor->set_attribute( 'data-swiper-scrollbar', '' );
 		}
 
 		return $processor->get_updated_html();

@@ -1,0 +1,1 @@
+(()=>{"use strict";const s=window.wp.blocks,o=window.wp.blockEditor,e=JSON.parse('{"UU":"pronamic/slider-scrollbar"}'),i=window.ReactJSXRuntime;(0,s.registerBlockType)(e.UU,{edit:()=>(0,i.jsx)("div",{...(0,o.useBlockProps)()}),save:()=>(0,i.jsx)("div",{...o.useBlockProps.save()})})})();
