@@ -126,7 +126,7 @@ export const sliderControls = createHigherOrderComponent(
 				<Fragment>
 					<BlockEdit { ...props } />
 					<InspectorControls>
-						<PanelBody title={ __( 'Settings' ) } initialOpen={ true }>
+						<PanelBody title={ __( 'Slider Settings', 'pronamic-slider' ) } initialOpen={ true }>
 							<RangeControl
 								label={ __( 'Slides per view', 'pronamic-slider' ) }
 								value={ attributes.slidesPerView }
@@ -164,7 +164,7 @@ export const sliderControls = createHigherOrderComponent(
 							/>
 						</PanelBody>
 
-						<PanelBody title={ __( 'Mobile Settings', 'pronamic-slider' ) } initialOpen={ false }>
+						<PanelBody title={ __( 'Mobile Slider Settings', 'pronamic-slider' ) } initialOpen={ false }>
 							<RangeControl
 								label={ __( 'Slides per view', 'pronamic-slider' ) }
 								value={ attributes.mobileSlidesPerView }
