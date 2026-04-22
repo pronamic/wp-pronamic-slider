@@ -47,11 +47,14 @@ document.addEventListener(
 				// Slider
 				const { nextBtn, prevBtn } = getSliderNavigation( sliderElement );
 
+				const slidesPerView = swiperSettingsObject.slidesPerView === 0 ? 'auto' : swiperSettingsObject.slidesPerView;
+				const mobileSlidesPerView = swiperSettingsObject.mobileSlidesPerView === 0 ? 'auto' : swiperSettingsObject.mobileSlidesPerView;
+
 				const blockSlider = new Swiper(
 					sliderElement,
 					{
 						spaceBetween: swiperSettingsObject.mobileSpaceBetween,
-						slidesPerView: swiperSettingsObject.mobileSlidesPerView,
+						slidesPerView: mobileSlidesPerView,
 						autoplay: autoplaySettings,
 						centeredSlides: swiperSettingsObject.centeredSlides,
 						loop: swiperSettingsObject.loop,
@@ -63,7 +66,7 @@ document.addEventListener(
 						pagination: paginationSettings,
 						breakpoints: {
 							782: {
-								slidesPerView: swiperSettingsObject.slidesPerView,
+								slidesPerView: slidesPerView,
 								spaceBetween: swiperSettingsObject.spaceBetween,
 							}
 						}

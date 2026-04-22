@@ -130,7 +130,7 @@ export const sliderControls = createHigherOrderComponent(
 								label={ __( 'Slides per view', 'pronamic-slider' ) }
 								value={ attributes.slidesPerView }
 								onChange={ ( slidesPerView ) => setAttributes( { slidesPerView } ) }
-								min={ 1 }
+								min={ 0 }
 								max={ 10 }
 							/>
 
@@ -168,7 +168,7 @@ export const sliderControls = createHigherOrderComponent(
 								label={ __( 'Slides per view', 'pronamic-slider' ) }
 								value={ attributes.mobileSlidesPerView }
 								onChange={ ( mobileSlidesPerView ) => setAttributes( { mobileSlidesPerView } ) }
-								min={ 1 }
+								min={ 0 }
 								max={ 10 }
 							/>
 
