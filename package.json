@@ -14,9 +14,9 @@
 		"packages-update": "wp-scripts packages-update"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.22.0"
+		"@wordpress/scripts": "^32.5.1"
 	},
 	"dependencies": {
-		"swiper": "^11.2.10"
+		"swiper": "^14.0.1"
 	}
 }
